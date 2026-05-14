@@ -1,0 +1,130 @@
+:root {
+    --primary: #003366; 
+    --secondary: #00509e;
+    --text: #333;
+    --bg: #f4f7f6;
+    --white: #ffffff;
+}
+
+body {
+    /* Fonte Sans-Serif: mais moderna e limpa */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar { 
+    background-color: #003366 !important; /* Azul Atuarial */
+}
+
+.navbar-brand, .nav-link { 
+    color: white !important; 
+}
+
+
+.main-content {
+    padding: 40px 0;
+}
+
+.container-artigo {
+    max-width: 950px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 50px 70px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+header.artigo-header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+h1 { font-size: 2.5rem; color: var(--primary); font-weight: 700; }
+h2 { font-size: 1.8rem; color: var(--primary); border-bottom: 2px solid var(--bg); padding-bottom: 8px; margin-top: 40px; font-weight: 600; }
+h3 { font-size: 1.3rem; color: var(--secondary); margin-top: 25px; font-weight: 600; }
+
+p { margin-bottom: 20px; text-align: justify; }
+
+.panel-primary {
+    background-color: #f8f9fa;
+    border-left: 5px solid var(--primary);
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.math-display {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--primary);
+    border-radius: 8px;
+    font-family: 'Consolas', monospace;
+}
+
+table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 0.95rem; }
+th { background: var(--primary); color: white; padding: 12px; border: 1px solid #ddd; }
+td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+tr:nth-child(even) { background: #fcfcfc; }
+
+.quote-box {
+    background: #fffbe6;
+    border: 1px solid #ffe58f;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.references { margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; font-size: 0.9rem; color: #666; }
+
+@media (max-width: 768px) {
+    .container-artigo { padding: 30px 20px; margin: 10px; }
+    h1 { font-size: 1.8rem; }
+}
+
+/* Container do Sumário */
+#toc {
+    
+    padding-right: 15px;
+}
+
+/* Links que NÃO estão selecionados */
+#toc .nav-link {
+    color: #444 !important; /* Cinza escuro para leitura clara */
+    font-weight: 500;
+    padding: 8px 12px;
+    border-left: 3px solid transparent; /* Borda invisível para não saltar quando ativar */
+    margin-bottom: 2px;
+    transition: all 0.2s ease;
+}
+
+/* Link quando o mouse passa em cima (Hover) */
+#toc .nav-link:hover {
+    color: var(--primary) !important;
+    background-color: #f8f9fa;
+}
+
+/* Link que ESTÁ selecionado (Active) */
+#toc .nav-link.active {
+    background-color: transparent !important;
+    color: var(--primary) !important;
+    font-weight: 700;
+    border-left: 3px solid var(--primary) !important; /* Borda destaque apenas no selecionado */
+}
+
+/* Ajuste no texto do título do sumário */
+#toc h5 {
+    color: #222;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}

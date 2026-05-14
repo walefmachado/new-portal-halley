@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Halley | Educação Atuarial</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/cometa.png" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">PORTAL HALLEY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="quem-somos.html" id="navbarQuemSomos" role="button">
+                            Quem Somos
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="quem-somos.html#projeto">O Projeto</a></li>
+                            <li><a class="dropdown-item" href="quem-somos.html#nome">A origem do nome</a></li>
+                            <li><a class="dropdown-item" href="quem-somos.html#equipe">Nossa Equipe</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="materiais.html" id="navbarMateriais" role="button">
+                            Materiais
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="materiais.html#notas">Notas de Aula</a></li>
+                            <li><a class="dropdown-item" href="materiais.html#apoio">Materiais de Apoio</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="noticias-eventos.html" id="navbarNoticias" role="button">
+                            Notícias
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="noticias-eventos.html#noticias">Notícias</a></li>
+                            <li><a class="dropdown-item" href="noticias-eventos.html#eventos">Eventos</a></li>
+                            <li><a class="dropdown-item" href="noticias-eventos.html#publicacoes">Publicações</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item"><a href="interfaces.html" class="nav-link">Interfaces de Cálculo</a></li>
+                    <li class="nav-item"><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<div id="carouselPortalHalley" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselPortalHalley" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselPortalHalley" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselPortalHalley" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+            <div class="overlay-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 fw-bold">Portal Halley</h1>
+                    <p class="lead">Excelência em Educação Atuarial e Estatística.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="5000">
+            <div class="overlay-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1350&q=80');">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 fw-bold">Análise de Dados</h1>
+                    <p class="lead">Interfaces de cálculo dinâmicas para suporte acadêmico.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="5000">
+            <div class="overlay-carousel" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 fw-bold">Comunidade Atuarial</h1>
+                    <p class="lead">O ponto de encontro para estudantes e profissionais.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPortalHalley" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselPortalHalley" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+    <!-- Seções Principais -->
+<main class="container my-5">
+    <div class="card text-white mb-5 border-0 shadow-lg" 
+        style="background: linear-gradient(135deg, #003366 0%, #00509e 100%); border-radius: 20px; overflow: hidden;">
+        <div class="card-body p-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h2 class="display-5 fw-bold mb-3">O Atuário</h2>
+                    <p class="lead mb-0" style="font-size: 1.2rem; line-height: 1.8; opacity: 0.9;">
+                        O atuário é o arquiteto financeiro do amanhã. Especializado em análise de riscos e cálculos previdenciários, 
+                        sua função é garantir a sustentabilidade de sistemas que protegem o futuro das pessoas e das empresas.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <i class="bi bi-hourglass-split" style="font-size: 8rem; opacity: 0.2;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="row align-items-center py-5">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 class="img-fluid rounded-4 shadow-lg" alt="Ciência Atuarial">
+        </div>
+        <div class="col-lg-7 ps-lg-5">
+            <h2 class="fw-bold mb-4" style="color: #003366;">Atuária – o que é isso?</h2>
+            <p class="text-muted" style="text-align: justify; line-height: 1.7;">
+                Essa ciência surgiu há cerca de 150 anos na Inglaterra, focada inicialmente na mortalidade e expectativa de vida. 
+                Com o tempo, expandiu-se para o mercado financeiro, seguros e saúde.
+            </p>
+            <p class="text-muted" style="text-align: justify; line-height: 1.7;">
+                Em resumo, é a ciência das técnicas específicas de análise de riscos e expectativas financeiras. O atuário realiza pesquisas, estabelece políticas de investimentos e calcula probabilidades de eventos para definir prêmios e reservas.
+            </p>
+            <button class="btn btn-outline-primary fw-bold mt-2" data-bs-toggle="collapse" data-bs-target="#textoCompleto">Ler mais sobre a história</button>
+            
+            <div class="collapse mt-3" id="textoCompleto">
+                <div class="card card-body border-0 bg-light small">
+                    No século XX, a inserção das empresas de seguro no mercado financeiro exigiu especialização em campos econômicos e financeiros, gerando a necessidade constante de novos modelos matemáticos e fiscalização técnica.
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="row text-center mt-5 mb-4">
+        <div class="col">
+            <h2 class="section-title">O que oferecemos</h2>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4 text-center card-atuaria">
+                <div class="mb-3 text-primary"><i class="bi bi-book fs-1"></i></div>
+                <h5 class="fw-bold">Materiais Didáticos</h5>
+                <p class="text-muted small">Notas de aula e guias sobre contingências vida e estatística.</p>
+                <a href="materiais.html" class="btn btn-sm btn-link fw-bold text-decoration-none mt-auto">ACESSAR <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-lg p-4 text-center text-white" style="background-color: #003366;">
+                <div class="mb-3"><i class="bi bi-megaphone fs-1"></i></div>
+                <h5 class="fw-bold">Notícias e Eventos</h5>
+                <p class="small opacity-75">Editais, congressos e as últimas novidades do mercado atuarial.</p>
+                <a href="noticias-eventos.html" class="btn btn-sm btn-light fw-bold mt-auto">VER NOTÍCIAS</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4 text-center card-atuaria">
+                <div class="mb-3 text-primary"><i class="bi bi-calculator fs-1"></i></div>
+                <h5 class="fw-bold">Interfaces de Cálculo</h5>
+                <p class="text-muted small">Ferramentas interativas para simulações financeiras em tempo real.</p>
+                <a href="#" class="btn btn-sm btn-link fw-bold text-decoration-none mt-auto">ABRIR <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</main>
+    <!-- Footer-->
+    <footer class="footer bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="#!">About</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="#!">Contact</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                </ul>
+                <p class="text-white-50 small mb-4 mb-lg-0">&copy; 2026 Portal Halley - UNIFAL-MG. Todos os direitos reservados.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item me-4">
+                        <a href="#!"><i class="bi-github fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

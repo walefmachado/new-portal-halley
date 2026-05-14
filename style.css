@@ -1,0 +1,199 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E TIPOGRAFIA
+   ========================================================================== */
+body { 
+    font-family: 'Roboto', sans-serif; 
+    background-color: #f4f7f6; /* Um cinza azulado suave para o fundo */
+    color: #333;
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO E RODAPÉ (CORES INSTITUCIONAIS)
+   ========================================================================== */
+.navbar { 
+    background-color: #003366 !important; /* Azul Atuarial */
+}
+
+.navbar-brand, .nav-link { 
+    color: white !important; 
+}
+
+footer { 
+    background-color: #212529; 
+    color: white; 
+    padding: 40px 0; 
+}
+
+/* ==========================================================================
+   HERO SECTION E CARROSSEL
+   ========================================================================== */
+.hero-section { 
+    background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), 
+                url('https://images.unsplash.com/photo-1454165833767-027ffbe10330?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.overlay-carousel {
+    height: 60vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-caption {
+    bottom: 30%;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   COMPONENTES DO PORTAL (NOTÍCIAS E CARDS)
+   ========================================================================== */
+.section-title { 
+    border-bottom: 3px solid #003366; 
+    display: inline-block; 
+    padding-bottom: 10px; 
+    margin-bottom: 30px; 
+}
+
+/* Card Genérico de Atuária */
+.card-atuaria { 
+    transition: transform 0.3s; 
+    border: none; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.card-atuaria:hover { 
+    transform: translateY(-5px); 
+}
+
+/* Card Específico de Notícias e Eventos */
+.news-card {
+    transition: all 0.3s ease;
+    border-radius: 15px !important;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    border: none;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.news-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Badge de Data (Estilo Calendário) */
+.date-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 5;
+    text-align: center;
+}
+
+.date-badge .day {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #003366;
+    line-height: 1;
+}
+
+.date-badge .month {
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: bold;
+}
+
+/* Estilos Específicos da Página de Contato */
+.top-bar {
+    background-color: #002b55; /* Um azul um pouco mais escuro que o principal */
+    font-size: 0.9rem;
+}
+
+.top-bar a:hover {
+    color: #ffbc13 !important; /* Cor de destaque (amarelo/ouro) parecida com a do IBA */
+    transition: 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #003366;
+    box-shadow: 0 0 0 0.25rem rgba(0, 51, 102, 0.25);
+}
+
+.btn-primary {
+    background-color: #003366;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #002244;
+}
+a.text-muted:hover {
+    color: #003366 !important; /* Cor azul do Portal Halley ao passar o mouse */
+}
+
+/* Estilo da Equipe */
+.team-img {
+    width: 160px; /* Tamanho fixo para as fotos */
+    height: 160px;
+    object-fit: cover; /* Garante que a foto não estique */
+    border: 5px solid white;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-item:hover .team-img {
+    transform: scale(1.05); /* Leve zoom ao passar o mouse */
+    border-color: #003366; /* Muda a borda para o azul do portal */
+}
+
+.testimonial-item h5 {
+    color: #003366;
+}
+
+/* Abrir dropdown ao passar o mouse em telas grandes */
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Remove o delay de distância */
+    }
+}
+
+/* Estilo elegante para o menu suspenso */
+.dropdown-menu {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item {
+    color: #003366 !important;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+}
+
+.dropdown-item:hover {
+    background-color: #f4f7f6;
+    color: #0056b3 !important;
+}
+
+.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
