@@ -41,3 +41,20 @@ O ecossistema do Portal Halley utiliza uma combinação de tecnologias modernas 
 ├── script.js              # Lógica e interatividade em JavaScript
 ├── CNAME                  # Configuração de redirecionamento do domínio próprio
 └── README.md              # Apresentação do repositório
+```
+
+🚀 Como Contribuir
+Este é um projeto colaborativo e de código aberto (open-source). Estudantes e pesquisadores são encorajados a contribuir!
+
+Faça um Fork deste repositório.
+
+- Crie uma branch para a sua modificação: git checkout -b minha-nova-funcionalidade.
+
+- Faça o commit das suas alterações: git commit -m 'Adiciona simulador de tábuas biométricas'.
+
+- Envie para a branch original: git push origin minha-nova-funcionalidade.
+
+- Abra um Pull Request para análise.
+
+📄 Licença
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
