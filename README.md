@@ -43,7 +43,7 @@ O ecossistema do Portal Halley utiliza uma combinação de tecnologias modernas 
 └── README.md              # Apresentação do repositório
 ```
 
-🚀 Como Contribuir
+## 🚀 Como Contribuir
 Este é um projeto colaborativo e de código aberto (open-source). Estudantes e pesquisadores são encorajados a contribuir!
 
 Faça um Fork deste repositório.
