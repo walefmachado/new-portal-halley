@@ -78,49 +78,704 @@
         <div class="col-12">
             <h3  class="section-title mb-4">Notas de Aula</h3>
             <div class="list-group shadow-sm border-0">
-                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-4 border-0 border-bottom">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Introdução às Ciências Atuariais</h5>
-                            <p class="text-muted mb-0">Conceitos fundamentais, história da atuária e panorama do mercado brasileiro.</p>
+
+                <div class="list-group-item list-group-item-action p-4 border-0 border-bottom">
+                    <!-- Cabeçalho do Card (Linha Principal) -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Introdução às Ciências Atuariais</h5>
+                                <p class="text-muted mb-0">Conceitos fundamentais, história da atuária e panorama do mercado brasileiro.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Botão que aciona o Dropdown/Collapse -->
+                        <button class="btn btn-primary px-4 fw-bold collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#aulasIntroAtuaria" 
+                                aria-expanded="false" 
+                                aria-controls="aulasIntroAtuaria">
+                            <i class="bi bi-journal-text me-2"></i> Ver Aulas <i class="bi bi-chevron-down ms-1 fs-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Expansível (Sublista de Aulas) -->
+                    <div class="collapse mt-3 pt-3 border-top" id="aulasIntroAtuaria">
+                        <div class="list-group list-group-flush">
+                            
+                            <!-- Aula 1 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 01</span>
+                                    <span class="fw-semibold">História e Origem da Atuária</span>
+                                </div>
+                                <a href="caminho/para/aula01.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 2 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 02</span>
+                                    <span class="fw-semibold">Conceitos Básicos de Risco e Seguro</span>
+                                </div>
+                                <a href="caminho/para/aula02.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 3 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 03</span>
+                                    <span class="fw-semibold">Panorama do Mercado Brasileiro (SUSEP / IBA)</span>
+                                </div>
+                                <a href="caminho/para/aula03.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary px-4 fw-bold"><i class="bi bi-download me-2"></i> Download</a>
                 </div>
 
-                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-4 border-0 border-bottom">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Matemática Atuarial 1</h5>
-                            <p class="text-muted mb-0">Estudo de biometria, comutações, rendas aleatórias e seguros de vida.</p>
+                <div class="list-group-item list-group-item-action p-4 border-0 border-bottom">
+                    <!-- Cabeçalho do Card (Linha Principal) -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Matemática Atuarial 1</h5>
+                                <p class="text-muted mb-0">Anuidades e Seguros de vida individuais. Prêmios: puros, nivelados e comerciais. Reservas Matemáticas. </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Botão que aciona o Dropdown/Collapse -->
+                        <button class="btn btn-primary px-4 fw-bold collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#aulasMatAtuarial" 
+                                aria-expanded="false" 
+                                aria-controls="aulasMatAtuarial">
+                            <i class="bi bi-journal-text me-2"></i> Ver Aulas <i class="bi bi-chevron-down ms-1 fs-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Expansível (Sublista de Aulas) -->
+                    <div class="collapse mt-3 pt-3 border-top" id="aulasMatAtuarial">
+                        <div class="list-group list-group-flush">
+
+                            <!-- ==================== REVISÃO ==================== -->
+                            <div class="px-2 pt-3 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-bookmark-fill me-1"></i> Módulo 1: Revisão
+                            </div>
+
+                            <!-- Aula 01 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 01</span>
+                                    <span class="fw-semibold">Revisão de Probabilidade</span>
+                                </div>
+                                <a href="materiais/aula01_revisao_probabilidade.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 02 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 02</span>
+                                    <span class="fw-semibold">Revisão de Juros Simples e Compostos</span>
+                                </div>
+                                <a href="materiais/aula02_juros_simples_compostos.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 03 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 03</span>
+                                    <span class="fw-semibold">Revisão de Inflação e Depósitos em Série</span>
+                                </div>
+                                <a href="materiais/aula03_inflacao_depositos_serie.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== SEGUROS ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-shield-check me-1"></i> Módulo 2: Seguros
+                            </div>
+
+                            <!-- Aula 04 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 04</span>
+                                    <span class="fw-semibold">Seguros de Vida</span>
+                                </div>
+                                <a href="materiais/aula04_seguros_de_vida.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 05 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 05</span>
+                                    <span class="fw-semibold">Seguros Dotais</span>
+                                </div>
+                                <a href="materiais/aula05_seguros_dotais.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 06 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 06</span>
+                                    <span class="fw-semibold">Seguros Diferidos</span>
+                                </div>
+                                <a href="materiais/aula06_seguros_diferidos.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 07 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 07</span>
+                                    <span class="fw-semibold">Seguros com Benefício Crescente e Relações entre Seguros</span>
+                                </div>
+                                <a href="materiais/aula07_seguros_crescentes_relacoes.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== ANUIDADES ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-graph-up-arrow me-1"></i> Módulo 3: Anuidades
+                            </div>
+
+                            <!-- Aula 08 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 08</span>
+                                    <span class="fw-semibold">Anuidades</span>
+                                </div>
+                                <a href="materiais/aula08_anuidades.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 09 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 09</span>
+                                    <span class="fw-semibold">Anuidades Diferidas</span>
+                                </div>
+                                <a href="materiais/aula09_anuidades_diferidas.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 10 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 10</span>
+                                    <span class="fw-semibold">Relações entre Seguros e Anuidades / Anuidades Fracionadas</span>
+                                </div>
+                                <a href="materiais/aula10_relacoes_anuidades_fracionadas.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 11 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 11</span>
+                                    <span class="fw-semibold">Anuidades Contínuas</span>
+                                </div>
+                                <a href="materiais/aula11_anuidades_continuas.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 12 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 12</span>
+                                    <span class="fw-semibold">Anuidades com Pagamentos Certos / Benefício Crescente</span>
+                                </div>
+                                <a href="materiais/aula12_anuidades_pagamentos_certos_crescentes.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== COMUTAÇÃO ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-calculator me-1"></i> Módulo 4: Comutação
+                            </div>
+
+                            <!-- Aula 13 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 13</span>
+                                    <span class="fw-semibold">Comutação</span>
+                                </div>
+                                <a href="materiais/aula13_comutacao.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 14 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 14</span>
+                                    <span class="fw-semibold">Comutação: Seguros e Anuidades</span>
+                                </div>
+                                <a href="materiais/aula14_comutacao_seguros_anuidades.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== PRÊMIOS E BENEFÍCIOS ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-cash-stack me-1"></i> Módulo 5: Prêmios e Benefícios
+                            </div>
+
+                            <!-- Aula 15 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 15</span>
+                                    <span class="fw-semibold">Prêmios Periódicos</span>
+                                </div>
+                                <a href="materiais/aula15_premios_periodicos.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 16 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 16</span>
+                                    <span class="fw-semibold">Prêmios Carregados</span>
+                                </div>
+                                <a href="materiais/aula16_premios_carregados.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== RESERVAS ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-piggy-bank me-1"></i> Módulo 6: Reservas
+                            </div>
+
+                            <!-- Aula 17 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 17</span>
+                                    <span class="fw-semibold">Reservas Matemáticas</span>
+                                </div>
+                                <a href="materiais/aula17_reservas.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary px-4 fw-bold"><i class="bi bi-download me-2"></i> Download</a>
                 </div>
 
-                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-4 border-0 border-bottom">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Matemática Atuarial 2</h5>
-                            <p class="text-muted mb-0">Cálculo de prêmios nivelados, reservas matemáticas e análise de solvência.</p>
+                <div class="list-group-item list-group-item-action p-4 border-0 border-bottom">
+                    <!-- Cabeçalho do Card (Linha Principal) -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Matemática Atuarial 2</h5>
+                                <p class="text-muted mb-0">Status de vida conjunta e último sobrevivente, anuidades reversíveis, status composto e modelos de múltiplos decrementos.</p>
+                            </div>
+                        </div>
+
+                        <!-- Botão que aciona o Dropdown/Collapse -->
+                        <button class="btn btn-primary px-4 fw-bold collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#aulasMatAtuarial2" 
+                                aria-expanded="false" 
+                                aria-controls="aulasMatAtuarial2">
+                            <i class="bi bi-journal-text me-2"></i> Ver Aulas <i class="bi bi-chevron-down ms-1 fs-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo Expansível (Sublista de Aulas) -->
+                    <div class="collapse mt-3 pt-3 border-top" id="aulasMatAtuarial2">
+                        <div class="list-group list-group-flush">
+
+                            <!-- ==================== REVISÃO ==================== -->
+                            <div class="px-2 pt-3 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-bookmark-fill me-1"></i> Módulo 1: Revisão
+                            </div>
+
+                            <!-- Aula 01 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 01</span>
+                                    <span class="fw-semibold">Revisão de Matemática Atuarial I (Status Simples)</span>
+                                </div>
+                                <a href="materiais/aula01_revisao_mat_atuarial_1.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== VETOR ALEATÓRIO ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-diagram-2 me-1"></i> Módulo 2: Vetor Aleatório
+                            </div>
+
+                            <!-- Aula 02 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 02</span>
+                                    <span class="fw-semibold">Vetor Aleatório na Modelagem de Sobrevivência</span>
+                                </div>
+                                <a href="materiais/aula02_vetor_aleatorio.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== STATUS VIDA CONJUNTA ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-people me-1"></i> Módulo 3: Status Vida Conjunta
+                            </div>
+
+                            <!-- Aula 03 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 03</span>
+                                    <span class="fw-semibold">Vida Conjunta: Seguro Pago ao Final do Ano de Morte</span>
+                                </div>
+                                <a href="materiais/aula03_vida_conjunta_seguro_final_ano.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 04 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 04</span>
+                                    <span class="fw-semibold">Vida Conjunta: Seguro Pago no Momento da Morte</span>
+                                </div>
+                                <a href="materiais/aula04_vida_conjunta_seguro_momento_morte.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 05 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 05</span>
+                                    <span class="fw-semibold">Vida Conjunta: Anuidades</span>
+                                </div>
+                                <a href="materiais/aula05_vida_conjunta_anuidades.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== STATUS ÚLTIMO SOBREVIVENTE ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-person-check me-1"></i> Módulo 4: Status Último Sobrevivente
+                            </div>
+
+                            <!-- Aula 06 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 06</span>
+                                    <span class="fw-semibold">Último Sobrevivente: Seguro Pago ao Final do Ano de Morte</span>
+                                </div>
+                                <a href="materiais/aula06_ultimo_sobrevivente_seguro_final_ano.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 07 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 07</span>
+                                    <span class="fw-semibold">Último Sobrevivente: Seguro Pago no Momento da Morte</span>
+                                </div>
+                                <a href="materiais/aula07_ultimo_sobrevivente_seguro_momento_morte.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- Aula 08 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 08</span>
+                                    <span class="fw-semibold">Último Sobrevivente: Anuidades, Relações com Seguros e Prêmios Nivelados</span>
+                                </div>
+                                <a href="materiais/aula08_ultimo_sobrevivente_anuidades_premios.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== ANUIDADES REVERSÍVEIS ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-arrow-left-right me-1"></i> Módulo 5: Anuidades Reversíveis
+                            </div>
+
+                            <!-- Aula 09 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 09</span>
+                                    <span class="fw-semibold">Anuidades Reversíveis</span>
+                                </div>
+                                <a href="materiais/aula09_anuidades_reversiveis.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== STATUS COMPOSTO ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-layers me-1"></i> Módulo 6: Status Composto
+                            </div>
+
+                            <!-- Aula 10 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 10</span>
+                                    <span class="fw-semibold">Status Composto</span>
+                                </div>
+                                <a href="materiais/aula10_status_composto.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
+                            <!-- ==================== MÚLTIPLOS DECREMENTOS ==================== -->
+                            <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                                <i class="bi bi-graph-down-arrow me-1"></i> Módulo 7: Múltiplos Decrementos
+                            </div>
+
+                            <!-- Aula 11 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Aula 11</span>
+                                    <span class="fw-semibold">Teoria e Modelos de Múltiplos Decrementos</span>
+                                </div>
+                                <a href="materiais/aula11_multiplos_decrementos.pdf" download class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-download me-1"></i> PDF
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary px-4 fw-bold"><i class="bi bi-download me-2"></i> Download</a>
                 </div>
 
-                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-4 border-0">
+            <div class="list-group-item list-group-item-action p-4 border-0 border-bottom">
+                <!-- Cabeçalho do Card (Linha Principal) -->
+                <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                         <i class="bi bi-file-earmark-pdf-fill fs-2 text-danger me-4"></i>
                         <div>
                             <h5 class="mb-1 fw-bold">Teoria do Risco</h5>
-                            <p class="text-muted mb-0">Modelagem de sinistros, modelos de risco coletivo e teoria da ruína.</p>
+                            <p class="text-muted mb-0">Modelos de risco individual e coletivo, cálculo de prêmios, medidas de risco, Processo de Poisson e probabilidade de ruína.</p>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary px-4 fw-bold"><i class="bi bi-download me-2"></i> Download</a>
+
+                    <!-- Botão que aciona o Dropdown/Collapse -->
+                    <button class="btn btn-primary px-4 fw-bold collapsed" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#aulasTeoriaRisco" 
+                            aria-expanded="false" 
+                            aria-controls="aulasTeoriaRisco">
+                        <i class="bi bi-journal-text me-2"></i> Ver Aulas <i class="bi bi-chevron-down ms-1 fs-6"></i>
+                    </button>
                 </div>
+
+                <!-- Conteúdo Expansível (Sublista de Aulas) -->
+                <div class="collapse mt-3 pt-3 border-top" id="aulasTeoriaRisco">
+                    <div class="list-group list-group-flush">
+
+                        <!-- ==================== REVISÃO ==================== -->
+                        <div class="px-2 pt-3 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-arrow-repeat me-1"></i> Módulo 1: Revisão
+                        </div>
+
+                        <!-- Aula 01 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 01</span>
+                                <span class="fw-semibold">Variáveis Aleatórias, Valor Esperado e Propriedades</span>
+                            </div>
+                            <a href="materiais/aula01_variaveis_aleatorias_valor_esperado.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 02 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 02</span>
+                                <span class="fw-semibold">Funções de Distribuição e Função Geradora de Momentos</span>
+                            </div>
+                            <a href="materiais/aula02_funcoes_distribuicao_fgm.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- ==================== MODELO DE RISCO INDIVIDUAL ==================== -->
+                        <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-person me-1"></i> Módulo 2: Modelo de Risco Individual
+                        </div>
+
+                        <!-- Aula 03 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 03</span>
+                                <span class="fw-semibold">Modelo de Risco Individual e Convolução para S</span>
+                            </div>
+                            <a href="materiais/aula03_modelo_individual_convolucao.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 04 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 04</span>
+                                <span class="fw-semibold">Função Geradora de Momentos de S e Aproximação pela Normal</span>
+                            </div>
+                            <a href="materiais/aula04_fgm_sinistros_aproximacao_normal.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- ==================== MODELO DE RISCO COLETIVO ==================== -->
+                        <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-people-fill me-1"></i> Módulo 3: Modelo de Risco Coletivo
+                        </div>
+
+                        <!-- Aula 05 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 05</span>
+                                <span class="fw-semibold">Modelo de Risco Coletivo e Função Geradora de Momentos de S</span>
+                            </div>
+                            <a href="materiais/aula05_modelo_coletivo_fgm.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 06 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 06</span>
+                                <span class="fw-semibold">A Distribuição do Agregado de Sinistros (S) e da Frequência (N)</span>
+                            </div>
+                            <a href="materiais/aula06_distribuicao_s_e_n.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- ==================== CÁLCULO DE PRÊMIOS ==================== -->
+                        <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-calculator me-1"></i> Módulo 4: Cálculo de Prêmios
+                        </div>
+
+                        <!-- Aula 07 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 07</span>
+                                <span class="fw-semibold">Seguro e Teoria da Utilidade</span>
+                            </div>
+                            <a href="materiais/aula07_seguro_e_utilidade.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 08 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 08</span>
+                                <span class="fw-semibold">Princípios de Cálculo de Prêmios e Propriedades Desejáveis</span>
+                            </div>
+                            <a href="materiais/aula08_calculo_premios_propriedades.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 09 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 09</span>
+                                <span class="fw-semibold">Medidas de Risco</span>
+                            </div>
+                            <a href="materiais/aula09_medidas_de_risco.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- ==================== PROCESSO DE POISSON ==================== -->
+                        <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-graph-up me-1"></i> Módulo 5: Processo de Poisson
+                        </div>
+
+                        <!-- Aula 10 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 10</span>
+                                <span class="fw-semibold">O Processo de Poisson para Frequência de Sinistros</span>
+                            </div>
+                            <a href="materiais/aula10_processo_poisson_frequencia.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 11 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 11</span>
+                                <span class="fw-semibold">Processo para Sinistros Agregados</span>
+                            </div>
+                            <a href="materiais/aula11_sinistros_agregados.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- ==================== PROBABILIDADE DE RUÍNA ==================== -->
+                        <div class="px-2 pt-4 pb-1 text-uppercase fs-7 fw-bold text-primary border-bottom">
+                            <i class="bi bi-exclamation-triangle me-1"></i> Módulo 6: Probabilidade de Ruína
+                        </div>
+
+                        <!-- Aula 12 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 12</span>
+                                <span class="fw-semibold">Fundamentos da Probabilidade de Ruína</span>
+                            </div>
+                            <a href="materiais/aula12_probabilidade_ruina.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                        <!-- Aula 13 -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-2 py-2">
+                            <div>
+                                <span class="badge bg-secondary me-2">Aula 13</span>
+                                <span class="fw-semibold">Probabilidade de Ruína no Horizonte Infinito (Modelo de Poisson Composto)</span>
+                            </div>
+                            <a href="materiais/aula13_ruina_horizonte_infinito_poisson_composto.pdf" download class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> PDF
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -138,7 +793,7 @@
                         <div class="card-body p-4">
                             <h4 class="card-title fw-bold">Tábuas Biométricas</h4>
                             <p class="card-text text-muted">Repositório completo das principais tábuas de mortalidade e sobrevivência (AT, CSO, IBGE). Essencial para a construção de modelos de sobrevivência e precificação de planos de previdência.</p>
-                            <a href="tabuas-vida.html" class="btn btn-outline-primary fw-bold">Acessar Repositório</a>
+                            <a href="tabuas-vida.html" class="btn btn-outline-primary fw-bold">Acessar</a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +808,7 @@
                         <div class="card-body p-4">
                             <h4 class="card-title fw-bold">Calculadora de produtos de vida</h4>
                             <p class="card-text text-muted">Calculadora dos principais produtos do ramo vida</p>
-                            <a href="#" class="btn btn-outline-primary fw-bold">Acessar</a>
+                            <a href="https://phalley.shinyapps.io/interface-atuarial/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary fw-bold">Acessar</a>
                         </div>
                     </div>
                 </div>
