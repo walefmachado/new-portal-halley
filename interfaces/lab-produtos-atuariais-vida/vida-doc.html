@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentação do Laboratório de Produtos Atuariais | MATEMÁTICA ATUARIAL</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+    margin: 0;
+    background: #f4f7f6;
+    color: #263746;
+    font: 15px/1.6 'Roboto', system-ui, sans-serif;
+}
+
+/* Cabeçalho no padrão do portal */
+header {
+    background: linear-gradient(125deg, #002b55, #003366);
+    color: #fff;
+    padding: 40px max(24px, calc((100% - 1052px) / 2));
+    border-bottom: 5px solid #ffbc13;
+}
+header .eyebrow {
+    color: #ffcf55;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 750;
+    letter-spacing: .15em;
+}
+header h1 {
+    font-size: clamp(29px, 4.1vw, 51px);
+    letter-spacing: -.045em;
+    line-height: 1.12;
+    margin: 8px 0 12px;
+}
+header p { color: #e1eaf2; margin: 6px 0; max-width: 670px; }
+.btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #ffbc13;
+    color: #002244;
+    font-weight: 700;
+    text-decoration: none;
+}
+.btn:hover { background: #ffcf55; }
+
+/* Layout */
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+nav.toc {
+    position: sticky;
+    top: 16px;
+    background: #fff;
+    border: 1px solid #d9e2e9;
+    border-radius: 15px;
+    padding: 18px;
+}
+nav.toc h2 { font-size: 16px; margin: 0 0 10px; color: #002b55; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 7px;
+    color: #003366;
+    text-decoration: none;
+    font-weight: 500;
+}
+nav.toc a:hover { background: #e8f0f7; }
+
+article { display: grid; gap: 18px; min-width: 0; }
+section {
+    background: #fff;
+    border: 1px solid #d9e2e9;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0, 43, 85, .045);
+}
+section h2 {
+    font-size: 22px;
+    letter-spacing: -.025em;
+    color: #002b55;
+    margin: 0 0 12px;
+    border-bottom: 3px solid #003366;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+section h3 { font-size: 17px; color: #002b55; margin: 20px 0 8px; }
+section p { margin: 0 0 10px; }
+section ol, section ul { margin: 0; padding-left: 22px; }
+section li { margin-bottom: 8px; }
+section li:last-child { margin-bottom: 0; }
+section .table { margin: 12px 0; }
+code {
+    background: #eaf0f5;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: .92em;
+}
+var { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+a { color: #003366; }
+:focus-visible { outline: 3px solid #ffbc13; outline-offset: 2px; }
+
+.table { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #e4eaf0; }
+thead th { background: #eaf0f5; color: #002b55; }
+tbody th { color: #002b55; width: 28%; min-width: 150px; }
+tbody tr:nth-child(even) { background: #f8fafb; }
+
+.note {
+    background: #fff7e5;
+    border: 1px solid #f0d58e;
+    color: #624a12;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+footer {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 24px 24px;
+    color: #647585;
+    font-size: 13px;
+}
+
+@media (max-width: 850px) {
+    main { grid-template-columns: 1fr; }
+    nav.toc { position: static; }
+}
+@media (max-width: 540px) {
+    main { padding: 12px; }
+    section { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="eyebrow">Matemática atuarial · Vida e pensões</div>
+    <h1>Documentação do Laboratório de Produtos Atuariais</h1>
+    <p>Guia de uso: como configurar um contrato, interpretar os resultados, simular tempos de vida e exportar os dados.</p>
+    <a class="btn" href="https://www.portalhalley.org/interfaces/lab-produtos-atuariais-vida/" target="_blank" rel="noopener noreferrer">Abrir o laboratório</a>
+</header>
+
+<main>
+<nav class="toc" aria-label="Nesta página">
+    <h2>Nesta página</h2>
+    <ul>
+        <li><a href="#sobre">Sobre o laboratório</a></li>
+        <li><a href="#primeiro-calculo">1. Primeiro cálculo</a></li>
+        <li><a href="#contrato">2. Configurar o contrato</a></li>
+        <li><a href="#resultados">3. Ler os resultados</a></li>
+        <li><a href="#simulacao">4. Simular tempos de vida</a></li>
+        <li><a href="#exportar">5. Exportar e explorar</a></li>
+        <li><a href="#referencias">Referências</a></li>
+    </ul>
+</nav>
+
+<article>
+<section id="sobre">
+    <h2>Sobre o laboratório</h2>
+    <p>O laboratório permite estudar como a mortalidade, os juros e as datas de pagamento afetam seguros de vida e anuidades. Você pode calcular prêmios puros e reservas, comparar tábuas biométricas e simular tempos futuros de vida.</p>
+    <p>O painel funciona no navegador, inclusive offline. O R é necessário apenas se você quiser executar o script exportado.</p>
+</section>
+
+<section id="primeiro-calculo">
+    <h2>1. Faça um primeiro cálculo</h2>
+    <p>Este exercício mostra como conferir o prêmio diretamente na tábua.</p>
+    <ol>
+        <li>Clique em <strong>Seguro temporário</strong> na barra de exemplos.</li>
+        <li>Confira a tábua <strong>AT 49 MALE</strong>, a idade inicial <strong>40</strong> e o diferimento <strong>0</strong>. Altere o <strong>Prazo</strong> para <strong>1</strong> ano, os <strong>Juros efetivos</strong> para <strong>0</strong> e o <strong>Capital segurado</strong> para <strong>1</strong>.</li>
+        <li>Mantenha <strong>Fim do ano de morte</strong>, prêmios <strong>Anuais</strong> e <strong>Anos de prêmios</strong> em branco.</li>
+        <li>Confira os cartões de resultado. O <strong>Prêmio puro único</strong> e o <strong>Prêmio puro anual</strong> devem mostrar <strong>R$ 0,00203</strong> na tela (valor arredondado a cinco casas decimais). Na <strong>Memória de cálculo</strong>, procure o mesmo valor na coluna <var>q</var><sub><var>x</var>+<var>t</var></sub>, na linha do ano 0.</li>
+    </ol>
+    <p style="margin-top:12px">O seguro só paga se houver morte no primeiro ano. Com juros de 0%, o valor presente de R$ 1 é R$ 1. Logo, o prêmio único é 1 × <var>q</var><sub>40</sub> = 0,002025. Como há um único prêmio anual antecipado, pago na contratação, ele coincide com o prêmio único.</p>
+</section>
+
+<section id="contrato">
+    <h2>2. Configure o contrato</h2>
+    <div class="table">
+    <table>
+        <thead><tr><th>Campo</th><th>Como usar</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Tábua biométrica e Idade inicial</th><td>Escolha a origem das probabilidades anuais de morte e a idade da pessoa na contratação.</td></tr>
+            <tr><th scope="row">Juros efetivos (% a.a.)</th><td>Digite a taxa anual em porcentagem. Use <strong>3</strong> para 3% ao ano. O desconto de um pagamento no tempo <var>t</var> é (1 + <var>i</var>)<sup>−<var>t</var></sup>, com <var>i</var> em forma decimal.</td></tr>
+            <tr><th scope="row">Diferimento e Prazo</th><td>O diferimento conta desde a contratação. Nos produtos temporários, o prazo começa após o diferimento. Por exemplo, diferimento de 2 anos e prazo de 5 anos levam ao vencimento em <var>t</var> = 7.</td></tr>
+            <tr><th scope="row">Capital segurado ou Renda por pagamento</th><td>Informe o capital do seguro ou o valor de cada parcela da renda. Uma renda mensal de R$ 10.000 corresponde a <strong>10.000 por pagamento</strong>.</td></tr>
+            <tr><th scope="row">Pagamento por morte</th><td>Quando o produto tem cobertura por morte, escolha <strong>Fim do ano de morte</strong> ou <strong>Momento da morte</strong>.</td></tr>
+            <tr><th scope="row">Frequência da renda e Momento da renda</th><td>Escolha pagamentos anuais ou mensais. A renda antecipada é paga no início de cada período. A postecipada é paga no fim, se houver sobrevivência até a data.</td></tr>
+            <tr><th scope="row">Prêmios antecipados e Anos de prêmios</th><td>Escolha prêmios anuais ou mensais, pagos enquanto a pessoa estiver viva dentro do prazo informado. O campo em branco estende o pagamento até o fim do contrato. Para financiar uma aposentadoria durante o diferimento, informe o prazo de contribuição.</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="table">
+    <table>
+        <thead><tr><th>Produto</th><th>Quando há benefício</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Seguro temporário</th><td>Se a morte ocorrer durante a cobertura.</td></tr>
+            <tr><th scope="row">Seguro vitalício</th><td>Se a morte ocorrer após o início da cobertura vitalícia.</td></tr>
+            <tr><th scope="row">Dotal puro</th><td>Se a pessoa sobreviver até o vencimento.</td></tr>
+            <tr><th scope="row">Dotal misto</th><td>Se a morte ocorrer durante a cobertura ou se a pessoa sobreviver até o vencimento.</td></tr>
+            <tr><th scope="row">Anuidade temporária</th><td>Em cada data prevista durante o prazo, mediante sobrevivência.</td></tr>
+            <tr><th scope="row">Anuidade vitalícia</th><td>Em cada data prevista a partir do início da renda, enquanto a pessoa estiver viva.</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <h3>O que a tábua informa</h3>
+    <p>O quadro <strong>Tábua selecionada</strong> mostra as idades mínima e máxima registradas.</p>
+    <p>A <strong>expectativa de vida futura</strong> indica quantos anos, em média, ainda restam a uma pessoa viva na idade selecionada. Aos 40 anos, uma expectativa futura de 35 anos corresponderia à idade média de 75 anos ao óbito. Se a tábua não tiver <var>q</var><sub><var>x</var></sub> = 1, o painel informa a expectativa restrita ao horizonte coberto pelos dados, isto é, a média do tempo futuro limitado a esse horizonte. Nessa tábua, use um produto de prazo finito coberto pelos dados.</p>
+
+    <h3>Como é tratado o pagamento no momento da morte</h3>
+    <p>A tábua fornece a probabilidade de morte ao longo de cada ano inteiro. Para calcular pagamentos no momento do óbito, o painel supõe <strong>distribuição uniforme dos óbitos (DUO)</strong> dentro de cada ano. A aproximação está na hipótese sobre a distribuição das mortes no ano. Dada essa hipótese, o painel integra analiticamente o desconto do período. A mesma hipótese permite interpolar a sobrevivência em idades fracionárias, como nas datas de pagamento mensal.</p>
+</section>
+
+<section id="resultados">
+    <h2>3. Leia os resultados</h2>
+    <div class="table">
+    <table>
+        <thead><tr><th>Resultado</th><th>Interpretação</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Prêmio puro único</th><td>Valor presente esperado dos benefícios na contratação.</td></tr>
+            <tr><th scope="row">Prêmio puro anual ou mensal</th><td>Valor de cada prêmio antecipado. É o prêmio puro único dividido pelo valor presente esperado de uma sequência de prêmios unitários com a frequência e o prazo escolhidos.</td></tr>
+            <tr><th scope="row">Desvio padrão do VP</th><td>Dispersão do valor presente aleatório dos benefícios. Está na mesma unidade monetária do benefício.</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>Use as abas acima do gráfico para alternar entre três leituras. O texto abaixo do gráfico muda com a aba.</p>
+    <ul>
+        <li><strong>Sobrevivência.</strong> No ano <var>t</var>, a curva mostra a porcentagem de pessoas que chegariam à idade <var>x</var>+<var>t</var>, entre as que estavam vivas na contratação aos <var>x</var> anos. A curva começa em 100% e cobre o horizonte do contrato.</li>
+        <li><strong>Benefícios.</strong> Cada ponto mostra quanto aquele ano contribui para o valor presente esperado na contratação. A soma das contribuições é o prêmio puro único. O pagamento por morte aparece no ano de ocorrência e o pagamento do dotal por sobrevivência aparece no vencimento.</li>
+        <li><strong>Reserva.</strong> Em cada aniversário, a reserva é o valor presente esperado dos benefícios futuros menos o dos prêmios futuros, condicionado à sobrevivência até essa data. A avaliação ocorre antes dos fluxos de sobrevivência e dos prêmios na própria data. Uma reserva negativa indica que, sob as hipóteses do cálculo, os prêmios futuros esperados superam os benefícios restantes. No vencimento de um dotal, a reserva imediatamente antes do pagamento pode ser igual ao capital para quem sobreviveu.</li>
+    </ul>
+
+    <p style="margin-top:12px">Na <strong>Memória de cálculo</strong>, <sub><var>t</var></sub><var>p</var><sub><var>x</var></sub> é a probabilidade de sobreviver da contratação até o ano <var>t</var>. Já <var>q</var><sub><var>x</var>+<var>t</var></sub> é a probabilidade de morrer no ano seguinte, condicionada à sobrevivência até a idade <var>x</var>+<var>t</var>. As colunas de VPA mostram as contribuições de cada ano para os benefícios e para os prêmios unitários. A reserva é avaliada na data da linha.</p>
+    <p>Em <strong>Comparar tábuas</strong>, selecione uma segunda tábua para recalcular o mesmo contrato. O painel mostra os resultados de ambas e a diferença <strong>tábua de comparação menos tábua principal</strong>.</p>
+</section>
+
+<section id="simulacao">
+    <h2>4. Simule tempos futuros de vida e compare modelos</h2>
+    <ol>
+        <li>Escolha uma tábua principal com idade terminal e informe a idade inicial.</li>
+        <li>Em <strong>Simulação e ajuste de mortalidade</strong>, mantenha <strong>10.000</strong> como <strong>Tamanho da amostra</strong> e <strong>123</strong> como <strong>Semente</strong>, ou informe valores próprios. O tamanho permitido vai de 10 a 50.000 observações.</li>
+        <li>Clique em <strong>Gerar amostra</strong>. Para cada pessoa simulada, o painel sorteia o número de anos completos até o óbito e acrescenta uma fração uniforme do ano. A mesma combinação de tábua, idade, tamanho e semente reproduz a amostra no painel.</li>
+        <li>Compare a curva de sobrevivência empírica com as curvas ajustadas de <strong>Weibull</strong>, <strong>Lognormal</strong> e <strong>Gama</strong>. Os modelos são ajustados por máxima verossimilhança à mesma amostra.</li>
+        <li>Use <strong>Baixar amostra CSV</strong> para exportar as observações, com a tábua, a idade inicial, a semente, os anos completos, o tempo futuro de vida e a idade ao óbito.</li>
+    </ol>
+    <p style="margin-top:12px">A tabela de ajustes mostra os parâmetros, a log-verossimilhança, o AIC e a distância KS. <strong>Menor AIC</strong> indica melhor ajuste relativo entre os modelos comparados na mesma amostra. <strong>Menor distância KS</strong> indica menor discrepância máxima entre a distribuição ajustada e a empírica. A distância exibida é uma medida descritiva. Os modelos ajustados podem estender a sobrevivência além do limite da tábua. Os prêmios e as reservas do painel continuam sendo calculados com a tábua selecionada e as hipóteses do contrato.</p>
+</section>
+
+<section id="exportar">
+    <h2>5. Exporte e explore outros exemplos</h2>
+    <ul>
+        <li><strong>Baixar CSV</strong>, em <strong>Memória de cálculo</strong>, grava os resultados anuais do contrato. <strong>Baixar amostra CSV</strong> grava as observações simuladas. Ambos usam ponto e vírgula como separador e vírgula decimal. No R, podem ser lidos com <code>read.csv2()</code>.</li>
+        <li><strong>Baixar script R</strong> gera um script comentado em R base para reproduzir o cenário atuarial atual. Abra o arquivo no RStudio e clique em <strong>Source</strong> para executá-lo.</li>
+        <li><strong>Dotal aos 22 anos</strong> permite identificar separadamente benefícios por morte e por sobrevivência no gráfico e na memória anual.</li>
+        <li><strong>Aposentadoria aos 51</strong> parte de uma pessoa de 18 anos, com 33 anos de contribuições mensais e renda mensal vitalícia de R$ 10.000 a partir dos 51 anos.</li>
+        <li><strong>Reserva aos 5 anos</strong> mostra a evolução da reserva de um seguro temporário de 15 anos. Observe como a distribuição da mortalidade por idade e os prêmios restantes afetam a curva.</li>
+    </ul>
+    <p class="note">O painel usa um modelo didático de uma vida, com juros constantes e prêmios puros. Seus cálculos não incluem despesas ou carregamentos comerciais.</p>
+</section>
+
+<section id="referencias">
+    <h2>Referências do laboratório</h2>
+    <ul>
+        <li><em>Fundamentos da Matemática Atuarial: vida e pensões</em>, Pires, Marques, Ferreira e Costa (2021), capítulos 3–5 e 7–8.</li>
+    </ul>
+</section>
+</article>
+</main>
+
+<footer>Portal Halley · Matemática atuarial</footer>
+</body>
+</html>
