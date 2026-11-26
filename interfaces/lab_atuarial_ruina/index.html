@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Laboratório de Ruína</title>
+<style>
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E TIPOGRAFIA
+   ========================================================================== */
+body { 
+    font-family: 'Roboto', sans-serif; 
+    background-color: #f4f7f6; /* Um cinza azulado suave para o fundo */
+    color: #333;
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO E RODAPÉ (CORES INSTITUCIONAIS)
+   ========================================================================== */
+.navbar { 
+    background-color: #003366 !important; /* Azul Atuarial */
+}
+
+.navbar-brand, .nav-link { 
+    color: white !important; 
+}
+
+footer { 
+    background-color: #212529; 
+    color: white; 
+    padding: 40px 0; 
+}
+
+/* ==========================================================================
+   HERO SECTION E CARROSSEL
+   ========================================================================== */
+.hero-section { 
+    background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), 
+                url('https://images.unsplash.com/photo-1454165833767-027ffbe10330?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.overlay-carousel {
+    height: 60vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-caption {
+    bottom: 30%;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   COMPONENTES DO PORTAL (NOTÍCIAS E CARDS)
+   ========================================================================== */
+.section-title { 
+    border-bottom: 3px solid #003366; 
+    display: inline-block; 
+    padding-bottom: 10px; 
+    margin-bottom: 30px; 
+}
+
+/* Card Genérico de Atuária */
+.card-atuaria { 
+    transition: transform 0.3s; 
+    border: none; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.card-atuaria:hover { 
+    transform: translateY(-5px); 
+}
+
+/* Card Específico de Notícias e Eventos */
+.news-card {
+    transition: all 0.3s ease;
+    border-radius: 15px !important;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    border: none;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.news-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Badge de Data (Estilo Calendário) */
+.date-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 5;
+    text-align: center;
+}
+
+.date-badge .day {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #003366;
+    line-height: 1;
+}
+
+.date-badge .month {
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: bold;
+}
+
+/* Estilos Específicos da Página de Contato */
+.top-bar {
+    background-color: #002b55; /* Um azul um pouco mais escuro que o principal */
+    font-size: 0.9rem;
+}
+
+.top-bar a:hover {
+    color: #ffbc13 !important; /* Cor de destaque (amarelo/ouro) parecida com a do IBA */
+    transition: 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #003366;
+    box-shadow: 0 0 0 0.25rem rgba(0, 51, 102, 0.25);
+}
+
+.btn-primary {
+    background-color: #003366;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #002244;
+}
+a.text-muted:hover {
+    color: #003366 !important; /* Cor azul do Portal Halley ao passar o mouse */
+}
+
+/* Estilo da Equipe */
+.team-img {
+    width: 160px; /* Tamanho fixo para as fotos */
+    height: 160px;
+    object-fit: cover; /* Garante que a foto não estique */
+    border: 5px solid white;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-item:hover .team-img {
+    transform: scale(1.05); /* Leve zoom ao passar o mouse */
+    border-color: #003366; /* Muda a borda para o azul do portal */
+}
+
+.testimonial-item h5 {
+    color: #003366;
+}
+
+/* Abrir dropdown ao passar o mouse em telas grandes */
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Remove o delay de distância */
+    }
+}
+
+/* Estilo elegante para o menu suspenso */
+.dropdown-menu {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item {
+    color: #003366 !important;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+}
+
+.dropdown-item:hover {
+    background-color: #f4f7f6;
+    color: #0056b3 !important;
+}
+
+.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
+/* Layout do laboratório */
+
+:root{color-scheme:light;--navy:#003366;--accent:#003366;--ink:#333;--muted:#53616f;--line:#d6dfe8}*{box-sizing:border-box}body{margin:0;font-size:15px;line-height:1.55}header{background:var(--navy);color:white;padding:28px max(24px,calc((100% - 1052px)/2));border-bottom:4px solid #002b55}h1{font-size:clamp(28px,4vw,45px);margin:3px 0;letter-spacing:-.025em}header p{margin:0;color:#e3edf7}.brand{font-weight:750;color:#fff;letter-spacing:.11em}main{max-width:1100px;margin:auto;padding:24px;display:grid;grid-template-columns:305px minmax(0,1fr);gap:18px;align-items:start}aside,section,details{background:white;border-radius:13px;padding:18px}h2,h3{line-height:1.25;margin:0 0 10px}h2{font-size:22px}h3{font-size:16px}fieldset{margin:14px 0;border:1px solid var(--line);border-radius:8px;padding:10px}legend{font-weight:740;padding:0 5px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}.wide{grid-column:1/-1}label{display:block;font-size:13px;font-weight:650}input,select,button{font:inherit}input,select{width:100%;margin-top:4px;padding:7px;border:1px solid #a9bec2;border-radius:6px;background:white;color:var(--ink);font-variant-numeric:tabular-nums}button{cursor:pointer;border:1px solid var(--accent);border-radius:7px;padding:8px 11px;background:white;color:var(--accent);font-weight:720}button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #003366;outline-offset:2px}.actions,.legend{display:flex;gap:8px;flex-wrap:wrap}.outputs{display:grid;gap:16px;min-width:0}.note,small{color:var(--muted)}.note{margin:6px 0 0}.status{min-height:24px;color:var(--accent);margin-top:8px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{padding:8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:12px;color:var(--muted)}td:first-child{font-weight:700}canvas{display:block;width:100%;height:300px}.legend{margin-top:4px;font-size:13px}.key{display:inline-block;width:22px;border-top:3px solid;vertical-align:middle;margin-right:5px}.key.dash{border-top-style:dashed}.key.dot{border-top-style:dotted}summary{cursor:pointer;font-weight:750}.error{color:#a52133}.math{font-family:Georgia,serif;font-size:17px}a{color:var(--accent)}[hidden]{display:none!important}@media(max-width:850px){main{grid-template-columns:1fr}aside{max-width:none}}@media(max-width:460px){main{padding:10px}aside,section,details{padding:12px}canvas{height:260px}}
+
+.lab-card { box-shadow: 0 4px 8px rgba(0,0,0,.1); min-width: 0; }
+.lab-card > .section-title { margin: 0 0 12px; padding-bottom: 6px; }
+#form .actions button {
+    background-color: #003366;
+    color: #fff;
+    border: 1px solid #003366;
+    visibility: visible;
+    opacity: 1;
+}
+#form .actions button:not(:disabled):is(:hover, :focus-visible) {
+    background-color: #002244;
+}
+#form .actions button:disabled {
+    background-color: #53616f;
+    border-color: #53616f;
+}
+
+/* Cabeçalho no padrão do portal (mesmo estilo do index: gradiente azul, filete dourado) */
+body > header {
+    background: linear-gradient(125deg, #002b55, #003366);
+    color: #ffffff;
+    padding: 40px max(24px, calc((100% - 1052px) / 2));
+    border-bottom: 5px solid #ffbc13;
+}
+body > header p {
+    color: #e1eaf2;
+    margin: 6px 0;
+    max-width: 670px;
+}
+body > header .eyebrow {
+    color: #ffcf55;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 750;
+    letter-spacing: .15em;
+}
+body > header h1 {
+    font-size: clamp(29px, 4.1vw, 51px);
+    letter-spacing: -.045em;
+    line-height: 1.12;
+    margin: 8px 0 12px;
+}
+
+</style></head>
+<body><header><div class="eyebrow">TEORIA DO RISCO</div><h1>Laboratório de Ruína</h1><p>Capital excedente, resseguro e probabilidade de ruína em seguros de danos.</p></header>
+<main><aside class="lab-card"><h2 class="section-title">Configuração</h2>
+<form id="form">
+<fieldset><legend>Experimento</legend><div class="fields">
+<label class="wide">Nome do cenário<input name="title" value="Cramér–Lundberg" maxlength="45" required></label>
+<label>Capital inicial u<input name="u" type="number" min="0" step="any" value="5" required></label>
+<label>Horizonte T (anos)<input name="T" type="number" min="0.0001" step="any" value="20" required></label>
+<label>Sinistros por ano λ<input name="lambda" type="number" min="0.000001" step="any" value="10" required></label>
+<label>Perturbação σ<input name="sigma" type="number" min="0" step="any" value="0" required></label>
+<label>Simulações<input name="n" type="number" min="100" max="200000" step="1" value="10000" required></label>
+<label>Trajetórias no gráfico<input name="paths" type="number" min="1" max="10" value="4" required></label>
+<label>Semente<input name="seed" type="number" min="0" max="4294967295" value="123" required></label>
+<label>Capital máximo no gráfico<input name="umax" type="number" min="0.000001" step="any" value="25" required></label>
+</div></fieldset>
+<fieldset><legend>Severidade bruta X</legend><div class="fields">
+<label class="wide">Distribuição<select name="dist"><option value="exp">Exponencial</option><option value="gamma">Gama</option><option value="ln">Lognormal</option><option value="pareto">Pareto I</option><option value="disc">Discreta</option></select></label>
+<label id="labelA"><span>Taxa</span><input name="a" type="number" step="any" value="0.8" required></label>
+<label id="labelB" hidden><span>Taxa</span><input name="b" type="number" step="any" value="1" required disabled></label>
+<label id="support" hidden class="wide">Valores (separados por espaços)<input name="xs" value="1000 2000 3000" required disabled></label>
+<label id="weights" hidden class="wide">Probabilidades (ponto decimal)<input name="ps" value="0.05 0.15 0.80" required disabled></label>
+</div></fieldset>
+<fieldset><legend>Prêmio bruto por ano</legend><div class="fields">
+<label class="wide">Princípio<select name="principle"><option value="mean">Valor esperado</option><option value="pure">Prêmio puro</option><option value="var">Variância</option><option value="sd">Desvio padrão</option><option value="exp">Exponencial (utilidade zero)</option><option value="manual">Taxa informada</option></select></label>
+<label class="wide" id="loading"><span>Carregamento θ (fração)</span><input name="theta" type="number" min="0" step="any" value="0.3" required></label>
+</div></fieldset>
+<fieldset><legend>Resseguro por sinistro</legend><div class="fields">
+<label class="wide">Contrato<select name="treaty"><option value="none">Sem resseguro</option><option value="quota">Quota-parte</option><option value="layer">Excesso de danos</option></select></label>
+<label id="retention" hidden><span>Prioridade d</span><input name="d" type="number" min="0" step="any" value="3" required disabled></label>
+<label id="layerLimit" hidden>Limite da camada L<input name="L" type="number" min="0.000001" step="any" placeholder="Vazio = ilimitada" disabled></label>
+<label id="reLoading" hidden class="wide">Carregamento do resseguro η<input name="eta" type="number" min="0" step="any" value="0.2" required disabled></label>
+</div></fieldset>
+<div class="actions"><button type="submit">Simular cenário</button><button id="example" type="button">Exemplo de notas de aula</button></div>
+<div id="status" class="status" role="status"></div>
+</form></aside>
+<div class="outputs">
+<section class="lab-card"><h2 class="section-title">Comparação de cenários</h2><div class="actions"><button id="csv" disabled>Exportar resultados (CSV)</button><button id="clear" disabled>Limpar cenários</button></div>
+<div class="scroll"><table id="results"></table></div><p class="note">Probabilidades em escala de 0 a 1. IC de Wilson de 95% para a estimativa de Monte Carlo em T. A cota de Lundberg se refere ao horizonte infinito.</p></section>
+<section class="lab-card"><h2 class="section-title">Trajetórias de U(t)</h2><label>Mostrar <select id="pathScenario"><option value="all">Todos os cenários</option></select></label><canvas id="paths" role="img" aria-label="Trajetórias simuladas do capital excedente"></canvas><div id="pathLegend" class="legend"></div><p class="note">Os segmentos verticais são pagamentos de sinistros. Com difusão, os segmentos entre os pontos apenas guiam a leitura. Os mínimos entre pontos entram no cálculo de ruína.</p></section>
+<section class="lab-card"><h2 class="section-title">Ruína acumulada até t</h2><canvas id="time" role="img" aria-label="Probabilidade de ruína por tempo de observação"></canvas><div id="timeLegend" class="legend"></div><p class="note">Cada curva usa o capital inicial e o horizonte do cenário correspondente.</p></section>
+<section class="lab-card"><h2 class="section-title">Ruína por capital inicial</h2><canvas id="capital" role="img" aria-label="Estimativa, cota superior e probabilidade exata por capital inicial"></canvas><div id="capitalLegend" class="legend"></div><p class="note">Contínua · Monte Carlo até T. Tracejada · cota de Lundberg. Pontilhada · probabilidade exata em horizonte infinito quando disponível.</p></section>
+<details class="lab-card"><summary>Modelo, métodos e interpretações</summary>
+<p class="math">U(t) = u + ct − Σ Yᵢ + σB(t), com N(t) ∼ Poisson(λt), B independente e Yᵢ = Xᵢ − Cᵢ.</p>
+<p>Com σ = 0, obtém-se Cramér–Lundberg. Com σ &gt; 0, a difusão perturba o agregado líquido (equivalentemente, adiciona σB ao capital). A difusão pode gerar variações de ambos os sinais. O evento de ruína é a ocorrência de capital estritamente negativo antes ou em T.</p>
+<p>Para um ano, m = λE[X] e v = λE[X²]. Os prêmios brutos disponíveis são m, (1+θ)m, m+θv, m+θ√v, λ(M<sub>X</sub>(θ)−1)/θ e taxa informada. Para θ = 0, o princípio exponencial retorna m. O prêmio cedido é (1+η)λE[C]. A taxa c é o prêmio bruto menos o cedido. A precificação incide sobre o componente de sinistros por saltos.</p>
+<p>No quota-parte, C = dX, com d entre 0 e 1. No excesso de danos, C = min(max(X−d,0), L). Após esgotar uma camada finita por sinistro, a parcela acima de d+L volta a ser da seguradora. Com L em branco, a retenção fica limitada a d. Sem franquia temporal, limite anual ou reinstalações.</p>
+<p>O saldo médio anual é c−λE[Y]. Com saldo positivo, procura-se R &gt; 0 tal que λ(M<sub>Y</sub>(R)−1) + σ²R²/2 = cR. O valor mostrado para a cota usa exp(−Ru). Para retenção limitada de distribuição contínua, a integração do momento exponencial usa somas superiores e a raiz conservadora. Sem momento exponencial positivo, mostra-se a cota trivial 1. Com severidade retida exponencial, σ = 0 e saldo positivo, a fórmula exata é (λE[Y]/c)exp(−Ru). No modelo não degenerado com saldo não positivo, a probabilidade última é 1.</p>
+<p>Os saltos são simulados em seus instantes de ocorrência. Com difusão, cada mínimo condicional entre instantes sucessivos é amostrado pela lei da ponte browniana. As probabilidades por capital reutilizam a perda máxima em cada trajetória. Os tempos da curva acumulada são pontos de avaliação, com mínimo calculado também em todo o intervalo entre eles. Para ler o IC com eventos raros, observe seu limite superior mesmo quando nenhuma trajetória cai em ruína.</p>
+<p>Use a mesma unidade monetária para capital, severidade e limites. A variação anual de B tem variância 1, logo σ tem unidade monetária por raiz de ano. Na gama use forma e taxa. Na lognormal use média e desvio padrão do logaritmo. Na Pareto I use mínimo e forma superior a 1.</p>
+<p>Base do exemplo de referência: notas de aula de Teoria do Risco.</p>
+<p>Pires, D. M., Ferreira, L., Costa, L. H. e Marques, R. A. G. (2020). <em>Teoria do risco atuarial: fundamentos e conceitos</em>. Curitiba, Editora CRV. <a href="https://doi.org/10.24824/978854443755.1">DOI 10.24824/978854443755.1</a>.</p>
+</details>
+</div></main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const form = $("form");
+const fmt = value => value == null ? "—" : value === Infinity ? "∞" : value.toLocaleString("pt-BR", {
+  minimumFractionDigits:5, maximumFractionDigits:5, useGrouping:false
+});
+const palette = ["#003366","#9b4c17","#08776c","#8e3d74","#536119","#533d9c"];
+const scenarios = [];
+let nextId = 1;
+function assert(test, message) { if (!test) throw new Error(message); }
+
+function rng(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state = (state + 0x6D2B79F5) | 0;
+    let k = Math.imul(state ^ (state >>> 15), 1 | state);
+    k ^= k + Math.imul(k ^ (k >>> 7), 61 | k);
+    return (((k ^ (k >>> 14)) >>> 0) + 0.5) / 4294967296;
+  };
+}
+function normal(random) {
+  return Math.sqrt(-2 * Math.log(random())) * Math.cos(2 * Math.PI * random());
+}
+function gammaSample(a, random) {
+  if (a < 1) return gammaSample(a + 1, random) * random() ** (1/a);
+  const d = a - 1/3;
+  while (true) {
+    const z = normal(random);
+    const w = 1 + z / Math.sqrt(9*d);
+    if (w <= 0) continue;
+    const v = w ** 3;
+    if (Math.log(random()) < z*z/2 + d*(1-v+Math.log(v))) return d*v;
+  }
+}
+
+// Gamma regularizada Q(a,x), por série inferior ou fração contínua superior.
+function logGamma(z) {
+  if (z < .5) return Math.log(Math.PI / Math.sin(Math.PI*z)) - logGamma(1-z);
+  const coef = [676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,
+    12.5073432786869,-0.1385710952657201,9.98436957801957e-6,1.50563273514931e-7];
+  z -= 1;
+  let sum = .9999999999998099;
+  coef.forEach((v,i) => { sum += v/(z+i+1); });
+  const t = z + 7.5;
+  return .5*Math.log(2*Math.PI) + (z+.5)*Math.log(t) - t + Math.log(sum);
+}
+function gammaRatio(a,x,upper) {
+  if (x <= 0) return upper ? 1 : 0;
+  if (!Number.isFinite(x)) return upper ? 0 : 1;
+  const logFactor = -x + a * Math.log(x) - logGamma(a);
+  const tiny = 1e-300;
+  if (x < a+1) {
+    let term = 1/a, sum=term;
+    for (let k=1;k<=20000;k++) {
+      term *= x/(a+k);
+      sum += term;
+      if (term < sum*1e-14) break;
+    }
+    const logP = Math.min(0,logFactor+Math.log(sum));
+    return upper ? -Math.expm1(logP) : Math.exp(logP);
+  }
+  let b=x+1-a, c=1/tiny, d=1/b, h=d;
+  for (let k=1;k<=20000;k++) {
+    const f=-k*(k-a);
+    b += 2;
+    d = f*d+b;
+    c = b+f/c;
+    d = 1/(Math.abs(d)<tiny ? tiny : d);
+    if (Math.abs(c)<tiny) c=tiny;
+    const change=d*c;
+    h *= change;
+    if (Math.abs(change-1)<1e-14) break;
+  }
+  const logQ = Math.min(0,logFactor+Math.log(h));
+  return upper ? Math.exp(logQ) : -Math.expm1(logQ);
+}
+function normalTail(z) {
+  return z >= 0 ? .5*gammaRatio(.5,z*z/2,true) : .5+.5*gammaRatio(.5,z*z/2,false);
+}
+
+function makeDistribution(p) {
+  const {dist,a,b} = p;
+  if (dist === "disc") {
+    const parse = input => input.trim().split(/[\s;]+/).map(Number);
+    assert(p.xs.trim() && p.ps.trim(),"Informe os valores e as probabilidades.");
+    const xs = parse(p.xs), ps = parse(p.ps);
+    const total = ps.reduce((x,y)=>x+y,0);
+    assert(xs.length === ps.length && xs.length <= 200 && xs.every(x=>Number.isFinite(x)&&x>=0)
+      && ps.every(x=>Number.isFinite(x)&&x>=0) && Math.abs(total-1)<1e-9,
+      "Informe até 200 valores e probabilidades não negativos, com soma das probabilidades igual a 1.");
+    const atoms=xs.map((x,i)=>[x,ps[i]/total]).filter(([,w])=>w>0);
+    const avg = f => atoms.reduce((acc,[x,w])=>acc+w*f(x),0);
+    return {
+      atoms, mean:avg(x=>x), second:avg(x=>x*x), max:Math.max(...atoms.map(([x])=>x)),
+      tail:(x,k=0)=>avg(y=>y>x ? y**k : 0),
+      mgfMinus:r=>avg(x=>Math.expm1(r*x)),
+      sample:random=>{
+        let q=random();
+        for (const [x,w] of atoms) { q-=w; if (q<=0) return x; }
+        return atoms.at(-1)[0];
+      }
+    };
+  }
+  if (dist === "exp" || dist === "gamma") {
+    const shape = dist === "exp" ? 1 : a;
+    const rate = dist === "exp" ? a : b;
+    assert(shape>0 && shape<=1e6 && rate>0,"Use forma positiva até 1 milhão e taxa positiva.");
+    const mean=shape/rate, second=mean*(shape+1)/rate;
+    const moments=[1,mean,second];
+    return {
+      mean,second,max:Infinity,rate,shape,
+      sample:random=>shape===1 ? -Math.log(random())/rate : gammaSample(shape,random)/rate,
+      tail:(x,k=0)=>moments[k]*gammaRatio(shape+k,rate*x,true),
+      mgfMinus:r=>r>=rate ? Infinity : Math.expm1(-shape*Math.log1p(-r/rate))
+    };
+  }
+  if (dist === "ln") {
+    assert(b>0,"O desvio padrão logarítmico deve ser positivo.");
+    const moment = k => Math.exp(k*a+k*k*b*b/2);
+    return {
+      mean:moment(1),second:moment(2),max:Infinity,mgfMinus:()=>Infinity,
+      sample:random=>Math.exp(a+b*normal(random)),
+      tail:(x,k=0)=>x<=0 ? moment(k) : moment(k)*normalTail((Math.log(x)-a-k*b*b)/b)
+    };
+  }
+  assert(a>0 && b>1,"Use mínimo positivo e forma maior que 1 para Pareto I.");
+  const moment = k => k<b ? a**k*b/(b-k) : Infinity;
+  return {
+    mean:moment(1),second:moment(2),max:Infinity,mgfMinus:()=>Infinity,
+    sample:random=>a*random()**(-1/b),
+    tail:(x,k=0)=>x<=a ? moment(k) : moment(k)*(a/x)**(b-k)
+  };
+}
+
+function makeTreaty(p, dist) {
+  const {treaty,d,L} = p;
+  if (treaty === "none" || (treaty==="quota" && d===0)) {
+    return {retain:x=>x, mean:dist.mean, ceded:0, mgfMinus:dist.mgfMinus,
+      rate:dist.shape===1 ? dist.rate : null, scale:Math.sqrt(dist.second), bounded:dist.max===0};
+  }
+  if (treaty === "quota") {
+    assert(d>=0 && d<=1,"A fração cedida deve estar entre 0 e 1.");
+    const q=1-d;
+    return {retain:x=>q*x, mean:q*dist.mean, ceded:d*dist.mean,
+      mgfMinus:r=>q===0 ? 0 : dist.mgfMinus(q*r),
+      rate:dist.shape===1 && q>0 ? dist.rate/q : null,
+      scale:q===0 ? 0 : q*Math.sqrt(dist.second), bounded:q===0 || dist.max===0};
+  }
+  const cededAt = x => Math.min(Math.max(x-d,0),L);
+  const retain = x => x-cededAt(x);
+  if (dist.atoms) {
+    const mean=dist.atoms.reduce((s,[x,w])=>s+w*retain(x),0);
+    const ceded=dist.atoms.reduce((s,[x,w])=>s+w*cededAt(x),0);
+    return {retain,mean,ceded,scale:retain(dist.max),bounded:retain(dist.max)===0,
+      mgfMinus:r=>dist.atoms.reduce((s,[x,w])=>s+w*Math.expm1(r*retain(x)),0)};
+  }
+  if (L===Infinity) {
+    const ceded=Math.max(0,dist.tail(d,1)-d*dist.tail(d));
+    const mean=Math.max(0,dist.mean-ceded);
+    // M_Y(r)-1 = integral de r exp(rx) P(Y>x) em [0,d].
+    // A sobrevivência na extremidade esquerda majora o integrando ponderado.
+    const grid=1024;
+    const survival=Array.from({length:grid},(_,i)=>dist.tail(d*i/grid));
+    return {retain:x=>Math.min(x,d),mean,ceded,scale:d,bounded:d===0,
+      mgfMinus:r=>{
+        if (d===0) return 0;
+        const step=r*d/grid;
+        if (r*d>700) return Infinity;
+        return Math.expm1(step)*survival.reduce((s,q,i)=>s+q*Math.exp(i*step),0);
+      }, conservative:d>0};
+  }
+  const end=d+L;
+  assert(Number.isFinite(end) && end>d,"A soma da prioridade e do limite deve ser representável.");
+  // Integra a sobrevivência na camada por meio da diferença entre stop-losses.
+  const stop = x=>Math.max(0,dist.tail(x,1)-x*dist.tail(x));
+  const ceded=Math.max(0,Math.min(dist.mean,stop(d)-stop(end)));
+  return {retain,mean:dist.mean-ceded,ceded,scale:Math.sqrt(dist.second),bounded:false,
+    rate:d===0 && dist.shape===1 ? dist.rate : null,
+    mgfMinus:r=>{
+      if (d===0 && dist.shape===1) return r>=dist.rate ? Infinity : Math.exp(-dist.rate*L)*dist.mgfMinus(r);
+      if (!dist.rate || r>=dist.rate) return Infinity;
+      const rate=dist.rate-r;
+      const mgf=1+dist.mgfMinus(r);
+      const tiltedBelow=mgf*gammaRatio(dist.shape,rate*d,false);
+      const baseBelow=gammaRatio(dist.shape,dist.rate*d,false);
+      const baseAbove=dist.tail(end);
+      const baseMiddle=Math.max(0,dist.tail(d)-baseAbove);
+      const tiltedAbove=Math.exp(Math.log(mgf)-r*L)*gammaRatio(dist.shape,rate*end,true);
+      return Math.max(0,tiltedBelow-baseBelow + Math.expm1(r*d)*baseMiddle + tiltedAbove-baseAbove);
+    }};
+}
+
+function theoretical(p, dist, treaty) {
+  const {lambda,theta,principle,eta,sigma} = p;
+  const grossLoss=lambda*dist.mean;
+  let gross;
+  if (principle==="pure") gross=grossLoss;
+  if (principle==="mean") gross=(1+theta)*grossLoss;
+  if (principle==="manual") gross=theta;
+  if (principle==="var" || principle==="sd") {
+    const variance=lambda*dist.second;
+    assert(theta===0 || Number.isFinite(variance),"O princípio selecionado exige variância finita.");
+    gross=theta===0 ? grossLoss : grossLoss+theta*(principle==="var" ? variance : Math.sqrt(variance));
+  }
+  if (principle==="exp") {
+    gross=theta===0 ? grossLoss : lambda*dist.mgfMinus(theta)/theta;
+    assert(Number.isFinite(gross),"O princípio exponencial exige momento exponencial finito no parâmetro escolhido.");
+  }
+  const ceded=(1+eta)*(lambda*treaty.ceded), net=gross-ceded, loss=lambda*treaty.mean;
+  const drift=net-loss;
+  assert([gross,ceded,net,loss].every(Number.isFinite),"Reduza a escala dos parâmetros monetários.");
+  const zeroRisk=sigma===0 && treaty.bounded;
+  if (zeroRisk) return {gross,ceded,net,loss,drift,R:null,bound:()=>net<0 ? 1 : 0,exact:()=>net<0 ? 1 : 0,
+    explanation:"Capital determinístico após retenção"};
+  const trivial = explanation => ({gross,ceded,net,loss,drift,R:null,bound:()=>1,
+    exact:drift<=0 ? ()=>1 : null, explanation});
+  if (drift<=0) return trivial("Saldo médio não positivo");
+  if (treaty.mgfMinus(1e-12/Math.max(treaty.mean,1e-12))===Infinity && !dist.rate && !treaty.conservative && !treaty.bounded && !dist.atoms)
+    return trivial("Sem momento exponencial positivo para a retenção");
+  const scale=Math.max(treaty.mean,Math.min(treaty.scale,1e100),sigma/Math.sqrt(lambda),1e-100);
+  const f = r => lambda*(treaty.mgfMinus(r)/r)+.5*sigma*sigma*r-net;
+  let lo=0, hi=1/scale;
+  for (let i=0;i<100 && f(hi)<0;i++) hi*=2;
+  if (f(hi)<0 || !Number.isFinite(hi)) return trivial("Raiz fora da faixa numérica");
+  for (let i=0;i<90;i++) {
+    const mid=(lo+hi)/2;
+    if (f(mid)<=0) lo=mid;
+    else hi=mid;
+  }
+  // Em retenções exponenciais (inclusive com átomo em zero), usa a raiz fechada.
+  const closed=sigma===0 && treaty.rate;
+  const R=closed ? treaty.rate*(drift/net) : lo;
+  if (!(R>1e-10/scale)) return trivial("Raiz positiva abaixo da resolução numérica");
+  return {gross,ceded,net,loss,drift,R,bound:u=>Math.exp(-R*u),
+    exact:closed ? u=>(loss/net)*Math.exp(-R*u) : null,
+    explanation:treaty.conservative ? "Coeficiente conservador da cota" : "Cota de Lundberg"};
+}
+
+function wilson(count,n) {
+  const z=1.959963984540054, p=count/n;
+  const middle=(p+z*z/(2*n))/(1+z*z/n);
+  const half=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n))/(1+z*z/n);
+  return [count===0 ? 0 : Math.max(0,middle-half),count===n ? 1 : Math.min(1,middle+half)];
+}
+function countAbove(sorted,x) {
+  let lo=0,hi=sorted.length;
+  while (lo<hi) {
+    const mid=(lo+hi)>>>1;
+    if (sorted[mid]<=x) lo=mid+1;
+    else hi=mid;
+  }
+  return sorted.length-lo;
+}
+async function simulate(p,dist,treaty,th,progress=()=>{}) {
+  // Fluxos separados mantêm os saltos iguais ao alterar somente prêmio, capital ou resseguro.
+  const clock=rng(p.seed), sizes=rng(p.seed^0x5bd1e995), noise=rng(p.seed^0x9e3779b9);
+  const steps=80, times=Array.from({length:steps+1},(_,i)=>p.T*i/steps);
+  const counts=new Uint32Array(steps+1), maxima=new Float64Array(p.n), paths=[];
+  for (let i=0;i<p.n;i++) {
+    let t=0, balance=0, minimum=0, next=-Math.log(clock())/p.lambda;
+    const pts=i<p.paths ? [[0,p.u]] : null;
+    function advance(end) {
+      const dt=end-t;
+      const start=balance;
+      balance+=th.net*dt;
+      if (p.sigma>0 && dt>0) {
+        const sd=p.sigma*Math.sqrt(dt);
+        balance+=sd*normal(noise);
+        const excursion=sd*Math.sqrt(-2*Math.log(noise()));
+        // Forma estável da solução quadrática do mínimo da ponte.
+        const diff=Math.abs(balance-start);
+        const denominator=Math.hypot(diff,excursion)+diff;
+        const deduction=denominator===0 ? 0 : (excursion/denominator)*(excursion/2);
+        minimum=Math.min(minimum, Math.min(start,balance)-deduction);
+      } else minimum=Math.min(minimum,balance);
+      t=end;
+      if (pts) pts.push([t,balance+p.u]);
+    }
+    for (let j=1;j<=steps;j++) {
+      while (next<=times[j]) {
+        advance(next);
+        balance-=treaty.retain(dist.sample(sizes));
+        minimum=Math.min(minimum,balance);
+        if (pts) pts.push([t,balance+p.u]);
+        next+=-Math.log(clock())/p.lambda;
+      }
+      advance(times[j]);
+      if (-minimum>p.u) counts[j]++;
+    }
+    assert(Number.isFinite(minimum) && Number.isFinite(balance),"A trajetória excedeu a faixa numérica.");
+    maxima[i]=-minimum;
+    if (pts) paths.push(pts);
+    if (i%250===249) {
+      progress((i+1)/p.n);
+      await new Promise(resolve=>setTimeout(resolve,0));
+    }
+  }
+  maxima.sort();
+  const count=counts[steps];
+  return {p,th,count,interval:wilson(count,p.n),prob:count/p.n,paths,
+    time:times.map((t,j)=>[t,counts[j]/p.n]),maxima};
+}
+
+const field = name => form.elements.namedItem(name);
+function toggle(id,visible) {
+  $(id).hidden=!visible;
+  $(id).querySelector("input").disabled=!visible;
+}
+function updateFields() {
+  const dist=field("dist").value, treaty=field("treaty").value, rule=field("principle").value;
+  const names={exp:["Taxa"],gamma:["Forma","Taxa"],ln:["Média do log","Desvio do log"],pareto:["Mínimo","Forma"]};
+  toggle("labelA",dist!=="disc");
+  toggle("labelB",Boolean(names[dist]?.[1]));
+  toggle("support",dist==="disc");
+  toggle("weights",dist==="disc");
+  if (names[dist]) {
+    $("labelA").querySelector("span").textContent=names[dist][0];
+    $("labelB").querySelector("span").textContent=names[dist][1] ?? "";
+  }
+  toggle("loading",rule!=="pure");
+  $("loading").querySelector("span").textContent=({mean:"Carregamento θ (fração)",var:"Coeficiente de variância θ",
+    sd:"Coeficiente de desvio padrão θ",exp:"Aversão ao risco θ",manual:"Prêmio bruto anual"})[rule] ?? "Carregamento θ";
+  toggle("retention",treaty!=="none");
+  $("retention").querySelector("span").textContent=treaty==="quota" ? "Fração cedida d" : "Prioridade d";
+  toggle("layerLimit",treaty==="layer");
+  toggle("reLoading",treaty!=="none");
+  field("d").max=treaty==="quota" ? "1" : "";
+}
+function readParams() {
+  const raw=Object.fromEntries(new FormData(form));
+  const p={...raw};
+  for (const key of ["u","T","lambda","sigma","n","paths","seed","umax","a","b","theta","d","eta"]) {
+    p[key]=Number(raw[key] ?? 0);
+  }
+  p.L=raw.L ? Number(raw.L) : Infinity;
+  p.title=p.title.trim();
+  assert(p.title.length>0,"Informe o nome do cenário.");
+  assert(p.lambda*p.T<=30000 && p.n*(p.lambda*p.T+80)<=40000000,
+    "Reduza o horizonte, a frequência ou as simulações. Limites por cenário: 30 mil sinistros esperados por trajetória e 40 milhões de operações esperadas.");
+  assert(scenarios.length<12,"Limpe a comparação para incluir mais cenários. Limite de 12 por sessão.");
+  return p;
+}
+const headers=["Cenário","ψ(u,T)","Cota de Lundberg","ψ(u,∞) exata","IC 95% — inferior","IC 95% — superior",
+  "Capital u","Horizonte T","Ruínas / simulações","Prêmio bruto","Prêmio cedido","Prêmio líquido c",
+  "Sinistro retido médio/ano","Saldo médio/ano","R usado","Observação"];
+function row(s) {
+  const {p,th}=s;
+  return [p.title,s.prob,th.bound(p.u),th.exact?.(p.u) ?? null,...s.interval,p.u,p.T,
+    `${s.count} / ${p.n}`,th.gross,th.ceded,th.net,th.loss,th.drift,th.R,th.explanation];
+}
+function showTable() {
+  const table=$("results");
+  table.replaceChildren();
+  const head=table.createTHead().insertRow();
+  headers.forEach(label=>{
+    const th=document.createElement("th");
+    th.textContent=label;
+    th.scope="col";
+    head.append(th);
+  });
+  const body=table.createTBody();
+  if (!scenarios.length) {
+    const cell=body.insertRow().insertCell();
+    cell.colSpan=headers.length;
+    cell.textContent="Simule um cenário para preencher a comparação.";
+  }
+  for (const scenario of scenarios) {
+    const tr=body.insertRow();
+    row(scenario).forEach((value, i)=>{
+      const cell=tr.insertCell();
+      cell.textContent=typeof value==="string" ? value : fmt(value);
+      if (i===0) cell.style.color=scenario.color;
+    });
+  }
+  $("csv").disabled=$("clear").disabled=!scenarios.length;
+}
+function drawGraph(id,series,{xmax,ymin=0,ymax=1,xlabel,ylabel,zero=false,timeAxis=false}) {
+  const canvas=$(id), ctx=canvas.getContext("2d");
+  const width=canvas.clientWidth, height=canvas.clientHeight, ratio=window.devicePixelRatio||1;
+  if (!width || !height) return;
+  canvas.width=width*ratio;
+  canvas.height=height*ratio;
+  ctx.scale(ratio,ratio);
+  const left=width<425 ? 83 : 101, right=21, top=16, bottom=52;
+  const w=width-left-right, h=height-top-bottom;
+  const X=x=>left+w*x/xmax, Y=y=>top+h*(1-(y-ymin)/(ymax-ymin));
+  const tick=v=>{
+    const s=fmt(v);
+    return s.length>11 ? v.toExponential(5).replace(".",",") : s;
+  };
+  const timeTick=new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits:2, maximumFractionDigits:2, useGrouping:false
+  });
+  ctx.font="11px Roboto, sans-serif";
+  ctx.fillStyle="#506773";
+  ctx.textAlign="right";
+  for (let i=0;i<=4;i++) {
+    const y=ymin+(ymax-ymin)*i/4;
+    ctx.beginPath();ctx.moveTo(left,Y(y));ctx.lineTo(width-right,Y(y));ctx.strokeStyle="#dfebeb";ctx.stroke();
+    ctx.fillText(tick(y),left-7,Y(y)+4);
+  }
+  ctx.textAlign="center";
+  const bins=width<450 ? 2 : 4;
+  for (let i=0;i<=bins;i++) {
+    const x=xmax*i/bins;
+    const pos=X(x);
+    ctx.textAlign=i===0 ? "left" : i===bins ? "right" : "center";
+    ctx.fillText(timeAxis ? timeTick.format(x) : tick(x),pos,Y(ymin)+18);
+  }
+  ctx.textAlign="center";
+  ctx.fillText(xlabel,left+w/2,height-9);
+  ctx.save();ctx.translate(12,top+h/2);ctx.rotate(-Math.PI/2);ctx.fillText(ylabel,0,0);ctx.restore();
+  ctx.save();
+  ctx.beginPath();ctx.rect(left,top,w,h);ctx.clip();
+  if (zero && ymin<=0 && ymax>=0) {
+    ctx.beginPath();ctx.moveTo(left,Y(0));ctx.lineTo(width-right,Y(0));ctx.strokeStyle="#a42438";ctx.lineWidth=1.5;ctx.stroke();
+  }
+  for (const line of series) {
+    ctx.strokeStyle=line.color;
+    ctx.globalAlpha=line.alpha ?? 1;
+    ctx.lineWidth=line.alpha ? 1.25 : 2;
+    ctx.setLineDash(line.dash ?? []);
+    ctx.beginPath();
+    line.points.forEach(([x,y],i)=>i===0 ? ctx.moveTo(X(x),Y(y)) : ctx.lineTo(X(x),Y(y)));
+    ctx.stroke();
+  }
+  ctx.restore();
+  if (!series.length) {
+    ctx.fillStyle="#506773";
+    ctx.fillText("Aguardando simulação",left+w/2,top+h/2);
+  }
+}
+function legend(id,items) {
+  $(id).replaceChildren();
+  for (const {label,color,style=""} of items) {
+    const span=document.createElement("span"), key=document.createElement("i");
+    key.className="key "+style;
+    key.style.borderColor=color;
+    span.append(key,document.createTextNode(label));
+    $(id).append(span);
+  }
+}
+function drawAll() {
+  const selection=$("pathScenario").value;
+  const visible=scenarios.filter(s=>selection==="all" || String(s.id)===selection);
+  const pathSeries=visible.flatMap(s=>s.paths.map(points=>({points,color:s.color,alpha:.75})));
+  let ymin=0,ymax=0;
+  for (const line of pathSeries) for (const [,y] of line.points) {ymin=Math.min(ymin,y);ymax=Math.max(ymax,y);}
+  const extent=Math.max(Math.abs(ymax),Math.abs(ymin));
+  const padding=extent>0 ? extent*.07 : 1;
+  drawGraph("paths",pathSeries,{xmax:Math.max(0,...visible.map(s=>s.p.T))||1,
+    ymin:ymin-padding,ymax:ymax+padding,xlabel:"Tempo t (anos)",timeAxis:true,ylabel:"Capital U(t)",zero:true});
+  const keys=scenarios.map(s=>({label:s.p.title,color:s.color}));
+  legend("pathLegend",visible.map(s=>({label:s.p.title,color:s.color})));
+  drawGraph("time",scenarios.map(s=>({color:s.color,points:s.time})),
+    {xmax:Math.max(0,...scenarios.map(s=>s.p.T))||1,xlabel:"Tempo t (anos)",timeAxis:true,ylabel:"Probabilidade de ruína"});
+  legend("timeLegend",keys);
+  const capital=scenarios.flatMap(s=>{
+    const x=Array.from({length:161},(_,i)=>s.p.umax*i/160);
+    if (s.p.u<=s.p.umax) x.push(s.p.u);
+    x.sort((a,b)=>a-b);
+    const line=(fn,dash)=>({color:s.color,points:x.map(u=>[u,fn(u)]),dash});
+    return [line(u=>countAbove(s.maxima,u)/s.p.n),line(s.th.bound,[7,4]),
+      ...(s.th.exact ? [line(s.th.exact,[2,4])] : [])];
+  });
+  drawGraph("capital",capital,{xmax:Math.max(0,...scenarios.map(s=>s.p.umax))||1,
+    xlabel:"Capital inicial u",ylabel:"Probabilidade de ruína"});
+  legend("capitalLegend",keys);
+}
+function status(message,error=false) {
+  $("status").textContent=message;
+  $("status").classList.toggle("error",error);
+}
+function attachScenario(s) {
+  s.id=nextId++;
+  s.color=palette[scenarios.length%palette.length];
+  scenarios.push(s);
+  $("pathScenario").add(new Option(s.p.title,String(s.id)));
+  showTable();
+  drawAll();
+}
+field("dist").addEventListener("change",()=>{
+  const defaults={exp:[.8,1],gamma:[2,1.6],ln:[0,.65],pareto:[.5,2.5]};
+  const pair=defaults[field("dist").value];
+  if (pair) [field("a").value,field("b").value]=pair;
+});
+field("treaty").addEventListener("change",()=>{
+  field("d").value=field("treaty").value==="quota" ? .25 : 3;
+});
+form.addEventListener("change",updateFields);
+form.addEventListener("submit",async event=>{
+  event.preventDefault();
+  const button=form.querySelector('[type="submit"]');
+  button.disabled=true;
+  try {
+    const p=readParams(), dist=makeDistribution(p), treaty=makeTreaty(p,dist);
+    const th=theoretical(p,dist,treaty);
+    status("Simulando…");
+    const scenario=await simulate(p,dist,treaty,th,pct=>status(`Simulando… ${Math.round(pct*100)}%`));
+    attachScenario(scenario);
+    status(`Cenário incluído · ${p.title}`);
+  } catch(error) { status(error.message,true); }
+  finally {button.disabled=false;}
+});
+$("example").addEventListener("click",()=>{form.reset();updateFields();status("Exemplo carregado. Use Simular cenário.");});
+$("clear").addEventListener("click",()=>{
+  scenarios.length=0;
+  $("pathScenario").replaceChildren(new Option("Todos os cenários","all"));
+  status("Comparação limpa.");
+  showTable();
+  drawAll();
+});
+$("pathScenario").addEventListener("change",drawAll);
+new ResizeObserver(drawAll).observe($("paths").parentElement);
+$("csv").addEventListener("click",()=>{
+  const rows=[["tipo","cenário","t","capital","probabilidade","cota","exata","parâmetros e resultados"],
+    ...scenarios.flatMap(s=>[
+      ["resumo",s.p.title,s.p.T,s.p.u,s.prob,s.th.bound(s.p.u),s.th.exact?.(s.p.u) ?? "",
+        JSON.stringify({parametros:{...s.p,L:s.p.L===Infinity?"ilimitado":s.p.L},resultados:Object.fromEntries(headers.map((h,i)=>[h,row(s)[i]]))})],
+      ...s.time.map(([t,prob])=>["tempo",s.p.title,t,s.p.u,prob,"","",""]),
+      ...Array.from({length:161},(_,i)=>{
+        const u=s.p.umax*i/160;
+        return ["capital",s.p.title,s.p.T,u,countAbove(s.maxima,u)/s.p.n,s.th.bound(u),s.th.exact?.(u) ?? "",""];
+      }),
+      ...s.paths.flatMap((path,i)=>path.map(([t,u])=>[`trajetória ${i+1}`,s.p.title,t,u,"","","",""]))
+    ])];
+  const quote=value=>{
+    let str=String(value);
+    if (typeof value==="number") str=str.replace(".",",");
+    else if (/^[\s]*[=+@-]/.test(str)) str="'"+str;
+    return '"'+str.replaceAll('"','""')+'"';
+  };
+  const csv="\uFEFF"+rows.map(record=>record.map(quote).join(";")).join("\r\n");
+  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  const link=document.createElement("a");
+  link.href=url;link.download="resultados_ruina.csv";link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+updateFields();
+showTable();
+drawAll();
+</script></body></html>
