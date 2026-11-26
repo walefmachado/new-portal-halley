@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentação do Laboratório de Ruína</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+    margin: 0;
+    background: #f4f7f6;
+    color: #263746;
+    font: 15px/1.6 'Roboto', system-ui, sans-serif;
+}
+
+/* Cabeçalho no padrão do portal */
+header {
+    background: linear-gradient(125deg, #002b55, #003366);
+    color: #fff;
+    padding: 40px max(24px, calc((100% - 1052px) / 2));
+    border-bottom: 5px solid #ffbc13;
+}
+header .eyebrow {
+    color: #ffcf55;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 750;
+    letter-spacing: .15em;
+}
+header h1 {
+    font-size: clamp(29px, 4.1vw, 51px);
+    letter-spacing: -.045em;
+    line-height: 1.12;
+    margin: 8px 0 12px;
+}
+header p { color: #e1eaf2; margin: 6px 0; max-width: 670px; }
+.btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #ffbc13;
+    color: #002244;
+    font-weight: 700;
+    text-decoration: none;
+}
+.btn:hover { background: #ffcf55; }
+
+/* Layout */
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+nav.toc {
+    position: sticky;
+    top: 16px;
+    background: #fff;
+    border: 1px solid #d9e2e9;
+    border-radius: 15px;
+    padding: 18px;
+}
+nav.toc h2 { font-size: 16px; margin: 0 0 10px; color: #002b55; }
+nav.toc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 7px;
+    color: #003366;
+    text-decoration: none;
+    font-weight: 500;
+}
+nav.toc a:hover { background: #e8f0f7; }
+
+article { display: grid; gap: 18px; min-width: 0; }
+section {
+    background: #fff;
+    border: 1px solid #d9e2e9;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0, 43, 85, .045);
+}
+section h2 {
+    font-size: 22px;
+    letter-spacing: -.025em;
+    color: #002b55;
+    margin: 0 0 12px;
+    border-bottom: 3px solid #003366;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+section p { margin: 0 0 10px; }
+section ol, section ul { margin: 0; padding-left: 22px; }
+section li { margin-bottom: 8px; }
+section li:last-child { margin-bottom: 0; }
+code {
+    background: #eaf0f5;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: .92em;
+}
+a { color: #003366; }
+:focus-visible { outline: 3px solid #ffbc13; outline-offset: 2px; }
+
+.table { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #e4eaf0; }
+thead th { background: #eaf0f5; color: #002b55; }
+tbody th { white-space: nowrap; color: #002b55; width: 1%; }
+tbody tr:nth-child(even) { background: #f8fafb; }
+
+.note {
+    background: #fff7e5;
+    border: 1px solid #f0d58e;
+    color: #624a12;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+footer {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 24px 24px;
+    color: #647585;
+    font-size: 13px;
+}
+
+@media (max-width: 850px) {
+    main { grid-template-columns: 1fr; }
+    nav.toc { position: static; }
+}
+@media (max-width: 540px) {
+    main { padding: 12px; }
+    section { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="eyebrow">Teoria do risco</div>
+    <h1>Documentação do Laboratório de Ruína</h1>
+    <p>Como configurar um cenário, interpretar os resultados e exportar os dados.</p>
+    <a class="btn" href="https://www.portalhalley.org/interfaces/lab-atuarial-ruina/" target="_blank" rel="noopener noreferrer">Abrir o laboratório</a>
+</header>
+
+<main>
+<nav class="toc" aria-label="Nesta página">
+    <h2>Nesta página</h2>
+    <ul>
+        <li><a href="#sobre">Sobre o laboratório</a></li>
+        <li><a href="#experimento">Primeiro experimento</a></li>
+        <li><a href="#configurar">Configurar um cenário</a></li>
+        <li><a href="#resultados">Ler os resultados</a></li>
+        <li><a href="#referencias">Referências</a></li>
+    </ul>
+</nav>
+
+<article>
+<section id="sobre">
+    <h2>Sobre o laboratório</h2>
+    <p>Laboratório para pesquisa em seguros de danos. Simula o capital excedente no modelo de Cramér–Lundberg, com opção de perturbação browniana e resseguro por sinistro.</p>
+    <p>Os cálculos são executados no próprio navegador.</p>
+</section>
+
+<section id="experimento">
+    <h2>Primeiro experimento</h2>
+    <ol>
+        <li>Clique em <strong>Exemplo de notas de aula</strong> e em <strong>Simular cenário</strong>.</li>
+        <li>A configuração usa capital inicial 5, horizonte de 20 anos, frequência de 10 sinistros por ano, severidade exponencial de taxa 0,8 e carregamento de 30% pelo princípio do valor esperado. São 10.000 simulações com semente 123.</li>
+        <li>Confira a tabela. A estimativa de ruína até 20 anos é 0,30550, com IC de Wilson de 95% de [0,29655; 0,31460]. A probabilidade exata no horizonte infinito é 0,30561 e a cota superior de Lundberg é 0,39729.</li>
+        <li>Para comparar com o modelo perturbado, dê outro nome ao cenário, altere σ para 2 e simule novamente. Mantenha a semente e os demais parâmetros para reaproveitar os mesmos tempos e valores brutos de sinistros. Ambas as configurações ficam na tabela e nos gráficos.</li>
+        <li>Para comparar o efeito do resseguro, volte σ a zero, selecione <strong>Excesso de danos</strong>, use prioridade 3, limite de camada 4, carregamento do resseguro 0,20 e simule com um novo nome. Nesse contrato, um sinistro de 9 é dividido em 4 cedidos e 5 retidos.</li>
+    </ol>
+</section>
+
+<section id="configurar">
+    <h2>Configurar um cenário</h2>
+    <div class="table">
+    <table>
+        <thead><tr><th>Campo</th><th>Como usar</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Capital inicial e horizonte</th><td>Informe o capital no instante zero e o período de observação em anos. Use a mesma unidade monetária no capital, nas severidades e nos limites.</td></tr>
+            <tr><th scope="row">Frequência e perturbação</th><td>λ é o número médio de sinistros por ano. Use σ = 0 para o modelo clássico e σ &gt; 0 para adicionar difusão browniana. σ está em unidades monetárias por raiz de ano.</td></tr>
+            <tr><th scope="row">Severidade</th><td>Exponencial usa taxa. Gama usa forma e taxa. Lognormal usa média e desvio padrão na escala logarítmica. Pareto I usa mínimo e forma maior que 1. Para uma distribuição discreta, digite os valores e as probabilidades em campos separados, com espaços entre os elementos e ponto decimal. As probabilidades devem somar 1.</td></tr>
+            <tr><th scope="row">Prêmio</th><td>Selecione prêmio puro, valor esperado, variância, desvio padrão, princípio exponencial ou taxa manual. No princípio do valor esperado, digite 0,30 para um carregamento de 30%. No campo numérico do navegador, use o separador decimal aceito pelo dispositivo.</td></tr>
+            <tr><th scope="row">Resseguro</th><td>Em quota-parte, informe a fração cedida, entre 0 e 1. Em excesso de danos, informe a prioridade e o limite da camada por sinistro. Deixe o limite vazio para uma camada ilimitada. O carregamento do resseguro incide sobre o custo médio cedido.</td></tr>
+            <tr><th scope="row">Simulações e semente</th><td>Mais simulações reduzem a incerteza de Monte Carlo. Repita os parâmetros e a semente para reproduzir o cenário. O número de trajetórias no gráfico controla apenas a exibição.</td></tr>
+            <tr><th scope="row">Capital máximo no gráfico</th><td>Define até qual capital inicial aparece a curva de ruína por capital. Use o mesmo máximo nos cenários quando quiser comparar o mesmo intervalo.</td></tr>
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<section id="resultados">
+    <h2>Ler os resultados e exportar</h2>
+    <ul>
+        <li><strong>Trajetórias de U(t).</strong> Segmentos verticais representam pagamentos de sinistros. A linha horizontal em zero indica a fronteira de ruína. Com difusão, o gráfico conecta pontos simulados e o cálculo de ruína também considera os mínimos entre esses pontos.</li>
+        <li><strong>Ruína acumulada até t.</strong> Mostra a proporção das simulações que tiveram capital negativo até cada tempo, mesmo que o capital tenha se recuperado depois.</li>
+        <li><strong>Ruína por capital inicial.</strong> A linha contínua mostra a estimativa até T. A tracejada mostra a cota superior de Lundberg em horizonte infinito e a pontilhada mostra a probabilidade exata em horizonte infinito quando disponível. Algumas severidades retidas não admitem a cota exponencial, caso em que o laboratório mostra a cota trivial 1.</li>
+        <li><strong>Tabela.</strong> O intervalo de Wilson de 95% quantifica a incerteza de Monte Carlo. Se houver zero ruínas observadas, consulte o limite superior do intervalo. O prêmio líquido é o prêmio bruto menos o prêmio cedido.</li>
+        <li><strong>CSV.</strong> Clique em <strong>Exportar resultados (CSV)</strong> para salvar parâmetros, resultados, pontos das curvas e trajetórias exibidas. O arquivo usa ponto e vírgula entre colunas e vírgula decimal nos campos numéricos.</li>
+    </ul>
+    <p class="note">Exporte antes de recarregar ou fechar a página: os cenários da sessão ficam no navegador apenas enquanto a página estiver aberta.</p>
+</section>
+
+<section id="referencias">
+    <h2>Referências</h2>
+    <p>O exemplo é baseado nas notas de aula de Teoria do Risco.</p>
+    <p>Pires, D. M., Ferreira, L., Costa, L. H. e Marques, R. A. G. (2020). <em>Teoria do risco atuarial: fundamentos e conceitos</em>. Curitiba, Editora CRV. <a href="https://doi.org/10.24824/978854443755.1" target="_blank" rel="noopener noreferrer">DOI 10.24824/978854443755.1</a>.</p>
+</section>
+</article>
+</main>
+
+<footer>Portal Halley · Teoria do risco</footer>
+</body>
+</html>
