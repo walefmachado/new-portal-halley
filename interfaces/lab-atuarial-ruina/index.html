@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Laboratório de Ruína</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Laboratório de Ruína | TEORIA DO RISCO</title>
 <style>
 /* ==========================================================================
    CONFIGURAÇÕES GERAIS E TIPOGRAFIA
@@ -223,34 +223,10 @@ a.text-muted:hover {
     border-color: #53616f;
 }
 
-/* Cabeçalho no padrão do portal (mesmo estilo do index: gradiente azul, filete dourado) */
-body > header {
-    background: linear-gradient(125deg, #002b55, #003366);
-    color: #ffffff;
-    padding: 40px max(24px, calc((100% - 1052px) / 2));
-    border-bottom: 5px solid #ffbc13;
-}
-body > header p {
-    color: #e1eaf2;
-    margin: 6px 0;
-    max-width: 670px;
-}
-body > header .eyebrow {
-    color: #ffcf55;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 750;
-    letter-spacing: .15em;
-}
-body > header h1 {
-    font-size: clamp(29px, 4.1vw, 51px);
-    letter-spacing: -.045em;
-    line-height: 1.12;
-    margin: 8px 0 12px;
-}
-
+details[aria-labelledby="riskHeading"] > summary > h2 { margin: 0; }
+#riskPanel { margin-top: 12px; }
 </style></head>
-<body><header><div class="eyebrow">TEORIA DO RISCO</div><h1>Laboratório de Ruína</h1><p>Capital excedente, resseguro e probabilidade de ruína em seguros de danos.</p></header>
+<body><header class="navbar"><div class="brand navbar-brand">TEORIA DO RISCO</div><h1>Laboratório de Ruína</h1><p>Capital excedente, resseguro e probabilidade de ruína em seguros de danos.</p></header>
 <main><aside class="lab-card"><h2 class="section-title">Configuração</h2>
 <form id="form">
 <fieldset><legend>Experimento</legend><div class="fields">
@@ -262,6 +238,7 @@ body > header h1 {
 <label>Simulações<input name="n" type="number" min="100" max="200000" step="1" value="10000" required></label>
 <label>Trajetórias no gráfico<input name="paths" type="number" min="1" max="10" value="4" required></label>
 <label>Semente<input name="seed" type="number" min="0" max="4294967295" value="123" required></label>
+<label>Nível de VaR e ES (%)<input name="level" type="number" min="0.01" max="99.99" step="any" value="95" required></label>
 <label>Capital máximo no gráfico<input name="umax" type="number" min="0.000001" step="any" value="25" required></label>
 </div></fieldset>
 <fieldset><legend>Severidade bruta X</legend><div class="fields">
@@ -270,6 +247,10 @@ body > header h1 {
 <label id="labelB" hidden><span>Taxa</span><input name="b" type="number" step="any" value="1" required disabled></label>
 <label id="support" hidden class="wide">Valores (separados por espaços)<input name="xs" value="1000 2000 3000" required disabled></label>
 <label id="weights" hidden class="wide">Probabilidades (ponto decimal)<input name="ps" value="0.05 0.15 0.80" required disabled></label>
+</div></fieldset>
+<fieldset><legend>Franquia por sinistro</legend><div class="fields">
+<label class="wide">Tipo de franquia<select name="deductible"><option value="none">Sem franquia</option><option value="ordinary">Dedutível (simples)</option><option value="integral">Integral</option></select></label>
+<label class="wide" id="deductibleValue" hidden>Valor da franquia f<input name="f" type="number" min="0" step="any" value="0.5" required disabled></label>
 </div></fieldset>
 <fieldset><legend>Prêmio bruto por ano</legend><div class="fields">
 <label class="wide">Princípio<select name="principle"><option value="mean">Valor esperado</option><option value="pure">Prêmio puro</option><option value="var">Variância</option><option value="sd">Desvio padrão</option><option value="exp">Exponencial (utilidade zero)</option><option value="manual">Taxa informada</option></select></label>
@@ -285,16 +266,24 @@ body > header h1 {
 <div id="status" class="status" role="status"></div>
 </form></aside>
 <div class="outputs">
-<section class="lab-card"><h2 class="section-title">Comparação de cenários</h2><div class="actions"><button id="csv" disabled>Exportar resultados (CSV)</button><button id="clear" disabled>Limpar cenários</button></div>
+<section class="lab-card"><h2 class="section-title">Comparação de cenários</h2><div class="actions"><button id="csvSummary" type="button" disabled>Exportar parâmetros e resultados (CSV)</button><button id="csvSimulations" type="button" disabled>Exportar valores simulados (CSV)</button><button id="clear" disabled>Limpar cenários</button></div>
 <div class="scroll"><table id="results"></table></div><p class="note">Probabilidades em escala de 0 a 1. IC de Wilson de 95% para a estimativa de Monte Carlo em T. A cota de Lundberg se refere ao horizonte infinito.</p></section>
+<details class="lab-card" open aria-labelledby="riskHeading">
+<summary aria-controls="riskPanel"><h2 class="section-title" id="riskHeading">Franquias e medidas de risco</h2></summary>
+<div id="riskPanel">
+<div class="scroll" tabindex="0" role="region" aria-label="Tabela de medidas de risco"><table id="riskResults"></table></div>
+<p class="note">Estimativas do sinistro agregado até T em três etapas. O VaR é o quantil no nível escolhido e o ES é a média da cauda acima desse nível, incluindo a fração necessária dos empates no VaR. A coluna P(S = 0) mede a frequência de agregado zero. Prêmios e difusão entram no capital, enquanto a tabela mede apenas os pagamentos dos sinistros.</p>
+</div>
+</details>
 <section class="lab-card"><h2 class="section-title">Trajetórias de U(t)</h2><label>Mostrar <select id="pathScenario"><option value="all">Todos os cenários</option></select></label><canvas id="paths" role="img" aria-label="Trajetórias simuladas do capital excedente"></canvas><div id="pathLegend" class="legend"></div><p class="note">Os segmentos verticais são pagamentos de sinistros. Com difusão, os segmentos entre os pontos apenas guiam a leitura. Os mínimos entre pontos entram no cálculo de ruína.</p></section>
 <section class="lab-card"><h2 class="section-title">Ruína acumulada até t</h2><canvas id="time" role="img" aria-label="Probabilidade de ruína por tempo de observação"></canvas><div id="timeLegend" class="legend"></div><p class="note">Cada curva usa o capital inicial e o horizonte do cenário correspondente.</p></section>
 <section class="lab-card"><h2 class="section-title">Ruína por capital inicial</h2><canvas id="capital" role="img" aria-label="Estimativa, cota superior e probabilidade exata por capital inicial"></canvas><div id="capitalLegend" class="legend"></div><p class="note">Contínua · Monte Carlo até T. Tracejada · cota de Lundberg. Pontilhada · probabilidade exata em horizonte infinito quando disponível.</p></section>
 <details class="lab-card"><summary>Modelo, métodos e interpretações</summary>
-<p class="math">U(t) = u + ct − Σ Yᵢ + σB(t), com N(t) ∼ Poisson(λt), B independente e Yᵢ = Xᵢ − Cᵢ.</p>
+<p class="math">U(t) = u + ct − Σ Yᵢ + σB(t), com N(t) ∼ Poisson(λt), B independente e Yᵢ = Iᵢ − Cᵢ.</p>
 <p>Com σ = 0, obtém-se Cramér–Lundberg. Com σ &gt; 0, a difusão perturba o agregado líquido (equivalentemente, adiciona σB ao capital). A difusão pode gerar variações de ambos os sinais. O evento de ruína é a ocorrência de capital estritamente negativo antes ou em T.</p>
-<p>Para um ano, m = λE[X] e v = λE[X²]. Os prêmios brutos disponíveis são m, (1+θ)m, m+θv, m+θ√v, λ(M<sub>X</sub>(θ)−1)/θ e taxa informada. Para θ = 0, o princípio exponencial retorna m. O prêmio cedido é (1+η)λE[C]. A taxa c é o prêmio bruto menos o cedido. A precificação incide sobre o componente de sinistros por saltos.</p>
-<p>No quota-parte, C = dX, com d entre 0 e 1. No excesso de danos, C = min(max(X−d,0), L). Após esgotar uma camada finita por sinistro, a parcela acima de d+L volta a ser da seguradora. Com L em branco, a retenção fica limitada a d. Sem franquia temporal, limite anual ou reinstalações.</p>
+<p>O dano bruto é X. Sem franquia, a indenização I = X. Na franquia dedutível, I = max(X−f, 0). Na integral, I = X se X &gt; f e zero nos demais casos. O prêmio bruto é calculado sobre I pelo princípio escolhido; o resseguro incide depois, e Y = I−C é a perda retida. A frequência de ocorrências λ permanece a mesma, inclusive para sinistros com indenização zero.</p>
+<p>Para um ano, m = λE[I] e v = λE[I²]. Os prêmios brutos disponíveis são m, (1+θ)m, m+θv, m+θ√v, λ(M<sub>I</sub>(θ)−1)/θ e taxa informada. Para θ = 0, o princípio exponencial retorna m. O prêmio cedido é (1+η)λE[C]. A taxa c é o prêmio bruto menos o cedido. A precificação incide sobre o componente de sinistros por saltos.</p>
+<p>No quota-parte, C = dI, com d entre 0 e 1. No excesso de danos, C = min(max(I−d,0), L). Após esgotar uma camada finita por sinistro, a parcela acima de d+L volta a ser da seguradora. Com L em branco, a retenção fica limitada a d. Sem franquia temporal, limite anual ou reinstalações.</p>
 <p>O saldo médio anual é c−λE[Y]. Com saldo positivo, procura-se R &gt; 0 tal que λ(M<sub>Y</sub>(R)−1) + σ²R²/2 = cR. O valor mostrado para a cota usa exp(−Ru). Para retenção limitada de distribuição contínua, a integração do momento exponencial usa somas superiores e a raiz conservadora. Sem momento exponencial positivo, mostra-se a cota trivial 1. Com severidade retida exponencial, σ = 0 e saldo positivo, a fórmula exata é (λE[Y]/c)exp(−Ru). No modelo não degenerado com saldo não positivo, a probabilidade última é 1.</p>
 <p>Os saltos são simulados em seus instantes de ocorrência. Com difusão, cada mínimo condicional entre instantes sucessivos é amostrado pela lei da ponte browniana. As probabilidades por capital reutilizam a perda máxima em cada trajetória. Os tempos da curva acumulada são pontos de avaliação, com mínimo calculado também em todo o intervalo entre eles. Para ler o IC com eventos raros, observe seu limite superior mesmo quando nenhuma trajetória cai em ruína.</p>
 <p>Use a mesma unidade monetária para capital, severidade e limites. A variação anual de B tem variância 1, logo σ tem unidade monetária por raiz de ano. Na gama use forma e taxa. Na lognormal use média e desvio padrão do logaritmo. Na Pareto I use mínimo e forma superior a 1.</p>
@@ -416,6 +405,7 @@ function makeDistribution(p) {
       mean,second,max:Infinity,rate,shape,
       sample:random=>shape===1 ? -Math.log(random())/rate : gammaSample(shape,random)/rate,
       tail:(x,k=0)=>moments[k]*gammaRatio(shape+k,rate*x,true),
+      logTiltTail:(r,x)=>-shape*Math.log1p(-r/rate)+Math.log(gammaRatio(shape,(rate-r)*x,true)),
       mgfMinus:r=>r>=rate ? Infinity : Math.expm1(-shape*Math.log1p(-r/rate))
     };
   }
@@ -435,6 +425,44 @@ function makeDistribution(p) {
     sample:random=>a*random()**(-1/b),
     tail:(x,k=0)=>x<=a ? moment(k) : moment(k)*(a/x)**(b-k)
   };
+}
+
+function applyDeductible(p, dist) {
+  if (!p.deductible || p.deductible==="none" || p.f===0) return {pay:x=>x,dist};
+  const f=p.f;
+  const shift=p.deductible==="ordinary" ? f : 0;
+  const pay=x=>x>f ? x-shift : 0;
+  if (dist.atoms) {
+    const atoms=dist.atoms.map(([x,w])=>[pay(x),w]);
+    const tail=(x,k=0)=>atoms.reduce((s,[y,w])=>s+(y>x ? w*y**k : 0),0);
+    return {pay,dist:{atoms,tail,mean:tail(0,1),second:tail(0,2),
+      max:pay(dist.max),mgfMinus:r=>atoms.reduce((s,[y,w])=>s+w*Math.expm1(r*y),0)}};
+  }
+
+  // Para I = (X - deslocamento) 1{X > f}, I > x exige X > max(f,x+deslocamento).
+  const threshold=x=>Math.max(f,x+shift);
+  const tail=(x,k=0)=>{
+    const t=threshold(x), prob=dist.tail(t);
+    if (k===0) return prob;
+    if (dist.shape===1 && shift===f) return prob*(k===1 ? 1/dist.rate : 2/dist.rate**2) +
+      (x===0 ? 0 : prob*(k===1 ? x : x*x+2*x/dist.rate));
+    const moment=dist.tail(t,k);
+    if (shift===0 || !Number.isFinite(moment)) return moment;
+    if (k===1) return Math.max(0,moment-shift*prob);
+    return Math.max(0,moment-2*shift*dist.tail(t,1)+shift*shift*prob);
+  };
+  // Quando X é exponencial, o excesso acima de f mantém a taxa original.
+  const exponential=dist.shape===1 && shift===f;
+  const logTiltTail=dist.logTiltTail ?
+    (r,x)=>dist.logTiltTail(r,threshold(x))-r*shift : null;
+  const logPayProb=dist.logTiltTail?.(0,f);
+  return {pay,dist:{tail,max:Infinity,mean:tail(0,1),second:tail(0,2),rate:dist.rate,
+    shape:exponential ? 1 : null,logTiltTail,
+    mgfMinus:r=>{
+      if (!logTiltTail || r>=dist.rate) return Infinity;
+      if (logPayProb===-Infinity) return Math.exp(logTiltTail(r,0));
+      return Math.exp(logPayProb)*Math.expm1(logTiltTail(r,0)-logPayProb);
+    }}};
 }
 
 function makeTreaty(p, dist) {
@@ -482,16 +510,13 @@ function makeTreaty(p, dist) {
   return {retain,mean:dist.mean-ceded,ceded,scale:Math.sqrt(dist.second),bounded:false,
     rate:d===0 && dist.shape===1 ? dist.rate : null,
     mgfMinus:r=>{
-      if (d===0 && dist.shape===1) return r>=dist.rate ? Infinity : Math.exp(-dist.rate*L)*dist.mgfMinus(r);
+      if (d===0 && dist.shape===1) return r>=dist.rate ? Infinity : dist.tail(L)*(r/(dist.rate-r));
       if (!dist.rate || r>=dist.rate) return Infinity;
-      const rate=dist.rate-r;
-      const mgf=1+dist.mgfMinus(r);
-      const tiltedBelow=mgf*gammaRatio(dist.shape,rate*d,false);
-      const baseBelow=gammaRatio(dist.shape,dist.rate*d,false);
-      const baseAbove=dist.tail(end);
-      const baseMiddle=Math.max(0,dist.tail(d)-baseAbove);
-      const tiltedAbove=Math.exp(Math.log(mgf)-r*L)*gammaRatio(dist.shape,rate*end,true);
-      return Math.max(0,tiltedBelow-baseBelow + Math.expm1(r*d)*baseMiddle + tiltedAbove-baseAbove);
+      const abovePriority=dist.tail(d), aboveLayer=dist.tail(end);
+      const tiltedBelowMinus=dist.mgfMinus(r) -
+        (Math.exp(dist.logTiltTail(r,d))-abovePriority);
+      const tiltedAboveMinus=Math.exp(dist.logTiltTail(r,end)-r*L)-aboveLayer;
+      return Math.max(0,tiltedBelowMinus + Math.expm1(r*d)*(abovePriority-aboveLayer) + tiltedAboveMinus);
     }};
 }
 
@@ -556,12 +581,33 @@ function countAbove(sorted,x) {
   }
   return sorted.length-lo;
 }
-async function simulate(p,dist,treaty,th,progress=()=>{}) {
+function riskMetrics(values,level) {
+  values.sort();
+  const n=values.length, position=level*n;
+  const nearest=Math.round(position);
+  const cut=Math.abs(position-nearest)<=4*Number.EPSILON*n ? nearest : position;
+  const index=Math.min(n-1,Math.max(0,Math.ceil(cut)-1));
+  let mean=0, sumSquares=0, zeros=0, es=0;
+  for (let i=0;i<n;i++) {
+    const x=values[i], delta=x-mean;
+    mean+=delta/(i+1);
+    sumSquares+=delta*(x-mean);
+    if (x===0) zeros++;
+    const weight=Math.max(0,Math.min(1,i+1-cut));
+    es+=x*(weight/(n-cut));
+  }
+  return [mean,Math.sqrt(Math.max(0,sumSquares/n)),zeros/n,values[index],es];
+}
+const riskNames=["Dano bruto","Indenização após franquia","Perda retida após resseguro"];
+const riskLabels=["Média","Desvio padrão","P(S = 0)","VaR","ES"];
+async function simulate(p,dist,treaty,th,progress=()=>{},pay=x=>x) {
   // Fluxos separados mantêm os saltos iguais ao alterar somente prêmio, capital ou resseguro.
   const clock=rng(p.seed), sizes=rng(p.seed^0x5bd1e995), noise=rng(p.seed^0x9e3779b9);
   const steps=80, times=Array.from({length:steps+1},(_,i)=>p.T*i/steps);
-  const counts=new Uint32Array(steps+1), maxima=new Float64Array(p.n), paths=[];
+  const counts=new Uint32Array(steps+1), deficits=new Float64Array(p.n), paths=[];
+  const aggregates=riskNames.map(()=>new Float64Array(p.n));
   for (let i=0;i<p.n;i++) {
+    let gross=0, insured=0, retained=0;
     let t=0, balance=0, minimum=0, next=-Math.log(clock())/p.lambda;
     const pts=i<p.paths ? [[0,p.u]] : null;
     function advance(end) {
@@ -584,7 +630,11 @@ async function simulate(p,dist,treaty,th,progress=()=>{}) {
     for (let j=1;j<=steps;j++) {
       while (next<=times[j]) {
         advance(next);
-        balance-=treaty.retain(dist.sample(sizes));
+        const damage=dist.sample(sizes), indemnity=pay(damage), kept=treaty.retain(indemnity);
+        gross+=damage;
+        insured+=indemnity;
+        retained+=kept;
+        balance-=kept;
         minimum=Math.min(minimum,balance);
         if (pts) pts.push([t,balance+p.u]);
         next+=-Math.log(clock())/p.lambda;
@@ -593,16 +643,20 @@ async function simulate(p,dist,treaty,th,progress=()=>{}) {
       if (-minimum>p.u) counts[j]++;
     }
     assert(Number.isFinite(minimum) && Number.isFinite(balance),"A trajetória excedeu a faixa numérica.");
-    maxima[i]=-minimum;
+    assert([gross,insured,retained].every(Number.isFinite),"O sinistro agregado excedeu a faixa numérica.");
+    [aggregates[0][i],aggregates[1][i],aggregates[2][i]]=[gross,insured,retained];
+    deficits[i]=-minimum;
     if (pts) paths.push(pts);
     if (i%250===249) {
       progress((i+1)/p.n);
       await new Promise(resolve=>setTimeout(resolve,0));
     }
   }
-  maxima.sort();
+  // Ordena cópias para preservar o pareamento entre agregado e capital por réplica.
+  const maxima=deficits.slice().sort();
   const count=counts[steps];
-  return {p,th,count,interval:wilson(count,p.n),prob:count/p.n,paths,
+  const risk=aggregates.map(values=>riskMetrics(values.slice(),(p.level ?? 95)/100));
+  return {p,th,count,risk,aggregates,deficits,interval:wilson(count,p.n),prob:count/p.n,paths,
     time:times.map((t,j)=>[t,counts[j]/p.n]),maxima};
 }
 
@@ -625,6 +679,7 @@ function updateFields() {
   toggle("loading",rule!=="pure");
   $("loading").querySelector("span").textContent=({mean:"Carregamento θ (fração)",var:"Coeficiente de variância θ",
     sd:"Coeficiente de desvio padrão θ",exp:"Aversão ao risco θ",manual:"Prêmio bruto anual"})[rule] ?? "Carregamento θ";
+  toggle("deductibleValue",field("deductible").value!=="none");
   toggle("retention",treaty!=="none");
   $("retention").querySelector("span").textContent=treaty==="quota" ? "Fração cedida d" : "Prioridade d";
   toggle("layerLimit",treaty==="layer");
@@ -634,7 +689,7 @@ function updateFields() {
 function readParams() {
   const raw=Object.fromEntries(new FormData(form));
   const p={...raw};
-  for (const key of ["u","T","lambda","sigma","n","paths","seed","umax","a","b","theta","d","eta"]) {
+  for (const key of ["u","T","lambda","sigma","n","paths","seed","umax","a","b","theta","d","eta","f","level"]) {
     p[key]=Number(raw[key] ?? 0);
   }
   p.L=raw.L ? Number(raw.L) : Infinity;
@@ -677,7 +732,31 @@ function showTable() {
       if (i===0) cell.style.color=scenario.color;
     });
   }
-  $("csv").disabled=$("clear").disabled=!scenarios.length;
+  for (const id of ["csvSummary","csvSimulations","clear"]) $(id).disabled=!scenarios.length;
+}
+function showRisk() {
+  const table=$("riskResults");
+  table.replaceChildren();
+  const head=table.createTHead().insertRow();
+  const labels=["Cenário","Etapa","Nível (%)",...riskLabels];
+  for (const label of labels) {
+    const cell=document.createElement("th");
+    cell.scope="col";
+    cell.textContent=label;
+    head.append(cell);
+  }
+  const body=table.createTBody();
+  if (!scenarios.length) {
+    const cell=body.insertRow().insertCell();
+    cell.colSpan=labels.length;
+    cell.textContent="Simule um cenário para calcular as medidas de risco.";
+  }
+  for (const s of scenarios) s.risk.forEach((values,i)=>{
+    const tr=body.insertRow();
+    for (const value of [s.p.title,riskNames[i],s.p.level,...values]) {
+      tr.insertCell().textContent=typeof value==="number" ? fmt(value) : value;
+    }
+  });
 }
 function drawGraph(id,series,{xmax,ymin=0,ymax=1,xlabel,ylabel,zero=false,timeAxis=false}) {
   const canvas=$(id), ctx=canvas.getContext("2d");
@@ -782,6 +861,7 @@ function attachScenario(s) {
   scenarios.push(s);
   $("pathScenario").add(new Option(s.p.title,String(s.id)));
   showTable();
+  showRisk();
   drawAll();
 }
 field("dist").addEventListener("change",()=>{
@@ -798,10 +878,11 @@ form.addEventListener("submit",async event=>{
   const button=form.querySelector('[type="submit"]');
   button.disabled=true;
   try {
-    const p=readParams(), dist=makeDistribution(p), treaty=makeTreaty(p,dist);
-    const th=theoretical(p,dist,treaty);
+    const p=readParams(), grossDist=makeDistribution(p);
+    const {dist,pay}=applyDeductible(p,grossDist);
+    const treaty=makeTreaty(p,dist), th=theoretical(p,dist,treaty);
     status("Simulando…");
-    const scenario=await simulate(p,dist,treaty,th,pct=>status(`Simulando… ${Math.round(pct*100)}%`));
+    const scenario=await simulate(p,grossDist,treaty,th,pct=>status(`Simulando… ${Math.round(pct*100)}%`),pay);
     attachScenario(scenario);
     status(`Cenário incluído · ${p.title}`);
   } catch(error) { status(error.message,true); }
@@ -813,35 +894,89 @@ $("clear").addEventListener("click",()=>{
   $("pathScenario").replaceChildren(new Option("Todos os cenários","all"));
   status("Comparação limpa.");
   showTable();
+  showRisk();
   drawAll();
 });
 $("pathScenario").addEventListener("change",drawAll);
 new ResizeObserver(drawAll).observe($("paths").parentElement);
-$("csv").addEventListener("click",()=>{
-  const rows=[["tipo","cenário","t","capital","probabilidade","cota","exata","parâmetros e resultados"],
-    ...scenarios.flatMap(s=>[
-      ["resumo",s.p.title,s.p.T,s.p.u,s.prob,s.th.bound(s.p.u),s.th.exact?.(s.p.u) ?? "",
-        JSON.stringify({parametros:{...s.p,L:s.p.L===Infinity?"ilimitado":s.p.L},resultados:Object.fromEntries(headers.map((h,i)=>[h,row(s)[i]]))})],
-      ...s.time.map(([t,prob])=>["tempo",s.p.title,t,s.p.u,prob,"","",""]),
-      ...Array.from({length:161},(_,i)=>{
-        const u=s.p.umax*i/160;
-        return ["capital",s.p.title,s.p.T,u,countAbove(s.maxima,u)/s.p.n,s.th.bound(u),s.th.exact?.(u) ?? "",""];
-      }),
-      ...s.paths.flatMap((path,i)=>path.map(([t,u])=>[`trajetória ${i+1}`,s.p.title,t,u,"","","",""]))
-    ])];
-  const quote=value=>{
-    let str=String(value);
-    if (typeof value==="number") str=str.replace(".",",");
-    else if (/^[\s]*[=+@-]/.test(str)) str="'"+str;
-    return '"'+str.replaceAll('"','""')+'"';
-  };
-  const csv="\uFEFF"+rows.map(record=>record.map(quote).join(";")).join("\r\n");
-  const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+// Parâmetros de cada cenário em colunas próprias, ao lado dos dois conjuntos de resultados.
+const parameterColumns=[
+  ["lambda","Frequência λ"],["sigma","Difusão σ"],["n","Número de simulações"],
+  ["paths","Trajetórias exibidas"],["seed","Semente"],["umax","Capital máximo no gráfico"],
+  ["dist","Distribuição"],["a","Parâmetro a da distribuição"],["b","Parâmetro b da distribuição"],
+  ["xs","Severidades discretas"],["ps","Probabilidades discretas"],
+  ["deductible","Tipo de franquia"],["f","Valor da franquia"],
+  ["principle","Princípio de prêmio"],["theta","Parâmetro de prêmio"],
+  ["treaty","Tipo de resseguro"],["d","Fração cedida ou prioridade"],["L","Limite da camada"],
+  ["eta","Carregamento do resseguro"],["level","Nível de VaR e ES (%)"]
+];
+function exportedParameter(p,key) {
+  if (key==="L") return p.treaty==="layer" ? (p.L===Infinity ? "ilimitado" : p.L) : "";
+  if ((key==="a" && p.dist==="disc") || (key==="b" && ["disc","exp"].includes(p.dist)) ||
+      (key==="f" && p.deductible==="none") || (key==="theta" && p.principle==="pure") ||
+      (["d","eta"].includes(key) && p.treaty==="none")) return "";
+  return p[key] ?? "";
+}
+function* summaryRows(items) {
+  yield ["ID do cenário",...headers,...parameterColumns.map(([,label])=>label),
+    ...riskNames.flatMap(stage=>riskLabels.map(metric=>stage+" — "+metric))];
+  for (const s of items) {
+    yield [s.id,...row(s),...parameterColumns.map(([key])=>exportedParameter(s.p,key)),...s.risk.flat()];
+  }
+}
+function* simulationRows(items) {
+  yield ["Tipo","ID do cenário","Cenário","Réplica","Tempo (anos)","Capital inicial",
+    ...riskNames,"Capital mínimo","Ruína até T (0/1)","U(t)","Probabilidade estimada"];
+  for (const s of items) {
+    const label=[s.id,s.p.title];
+    for (let i=0;i<s.p.n;i++) {
+      yield ["réplica",...label,i+1,s.p.T,s.p.u,...s.aggregates.map(values=>values[i]),
+        s.p.u-s.deficits[i],Number(s.deficits[i]>s.p.u),"",""];
+    }
+    for (const [i,path] of s.paths.entries()) {
+      for (const [t,u] of path) {
+        yield ["trajetória",...label,i+1,t,s.p.u,"","","","","",u,""];
+      }
+    }
+    for (const [t,prob] of s.time) {
+      yield ["ruína por tempo",...label,"",t,s.p.u,"","","","","","",prob];
+    }
+    const capitals=Array.from({length:161},(_,i)=>s.p.umax*i/160);
+    if (s.p.u<=s.p.umax && !capitals.includes(s.p.u)) capitals.push(s.p.u);
+    for (const u of capitals.sort((a,b)=>a-b)) {
+      yield ["ruína por capital",...label,"",s.p.T,u,"","","","","","",countAbove(s.maxima,u)/s.p.n];
+    }
+  }
+}
+function csvField(value) {
+  let str=String(value ?? "");
+  if (typeof value==="number") str=str.replace(".",",");
+  else if (/^[\s]*[=+@-]/.test(str) || /^[\t\r\n]/.test(str)) str="'"+str;
+  return '"'+str.replaceAll('"','""')+'"';
+}
+function downloadCsv(filename,rows) {
+  const chunks=["\uFEFF"];
+  let lines=[];
+  for (const record of rows) {
+    lines.push(record.map(csvField).join(";")+"\r\n");
+    if (lines.length===2048) {
+      chunks.push(lines.join(""));
+      lines=[];
+    }
+  }
+  chunks.push(lines.join(""));
+  const url=URL.createObjectURL(new Blob(chunks,{type:"text/csv;charset=utf-8"}));
   const link=document.createElement("a");
-  link.href=url;link.download="resultados_ruina.csv";link.click();
+  link.href=url;link.download=filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
-});
+}
+$("csvSummary").addEventListener("click",()=>downloadCsv("parametros_e_resultados.csv",summaryRows(scenarios)));
+$("csvSimulations").addEventListener("click",()=>downloadCsv("valores_simulados.csv",simulationRows(scenarios)));
 updateFields();
 showTable();
+showRisk();
 drawAll();
 </script></body></html>
